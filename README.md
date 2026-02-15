@@ -14,7 +14,7 @@
 
 ## 🩺 About Me  
 
-I am a **medical graduate turned medical-tech developer**, passionate about building  
+I am a **medical graduate and hobbyist tech developer**, passionate about building  
 **intelligent digital solutions for healthcare, automation, and gaming ecosystems.**
 
 I focus on **optimizing clinical workflows, improving hospital efficiency, and creating medical utility tools** — blending **medicine, engineering, and design.**
