@@ -1,45 +1,87 @@
-# itskaero Landing Page — v2
+# itskaero
 
-Interactive static landing page for the itskaero project archive.
+> **I build things to understand them.**
 
-## What changed in v2
+I'm a problem-driven builder who tends to start with something that bothers me.
 
-This version moves beyond a card-based portfolio and uses the design concept:
+Sometimes it's a clinical workflow.  
+Sometimes it's a messy dataset.  
+Sometimes it's a system I don't quite understand.
 
-**problem → take apart → find patterns → build → result**
+So I take it apart.
 
-### Interactive pieces
+I look for the patterns underneath it, build something around what I find, and occasionally it turns out that the problem wasn't mine alone.
 
-- Cursor-following hero interaction
-- Animated orbit / data-field details
-- Scroll-revealed process steps
-- Project constellation with category filters
-- Project-specific visual scenes
-  - MeritNama: candidates / preferences / quotas / seats / allocation
-  - Nabz: prescription-paper scene with bilingual treatment
-  - Antibiome / Antibiotigram: microbiology / susceptibility visualization
-  - Nigheban / BahawalpurNama: system/data experiments
-- Five-step project story timeline
-- Project-specific "next project" transitions
-- Responsive mobile layout
-- `prefers-reduced-motion` fallback
-- No framework or build step
+---
 
-## Deploy
+## What I'm building
 
-Put `index.html`, `style.css`, and `script.js` in the root of the GitHub Pages repository.
+| | |
+|---|---|
+| ### 🧩 [MeritNama](https://itskaero.github.io/meritnama/) | **Medical induction, understood.**<br><br>A platform for exploring medical residency induction data, merit trends, preferences, quotas and seat allocation. |
+| ### 💊 [Antibiome](https://itskaero.github.io/antibiome/) | **What is happening locally?**<br><br>A culture-surveillance project designed to turn microbiology data into local resistance patterns and help inform antibiotic guidelines. |
+| ### ✍️ [Nabz](https://itskaero.github.io/nabz/) | **Less paperwork. More medicine.**<br><br>A clinical prescription and documentation workflow built around the way clinicians actually work. |
+| ### 🧬 [Antibiotigram](https://itskaero.github.io/antibiotigram/) | **See the antibiotic pattern.**<br><br>A visual approach to antibiotic susceptibility information — making relationships easier to see than a wall of tables. |
+| ### 👁️ [Nigheban](https://itskaero.github.io/nigheban/) | **Still figuring it out.**<br><br>An evolving system experiment. Some projects are useful precisely because they're unfinished. |
+| ### 📍 BahawalpurNama | **Something local is taking shape.**<br><br>A new experiment around local information, data and the place I know.<br><br>**Building…** |
 
-## Important
+---
 
-The visual scenes are deliberately lightweight representations, not screenshots. The next production pass can replace them with actual screenshots, SVG reconstructions, or live mini-interactions from each product.
+## How I tend to build
 
-The project URLs are already wired to the `itskaero.github.io` pages and `itskaerox` GitHub repositories used by the archive. Update any URL if a project moves.
+```text
+something bothers me
+        ↓
+   take it apart
+        ↓
+  find the pattern
+        ↓
+   build a tool
+        ↓
+maybe someone else
+needs it too
+```
 
-## Suggested next production pass
+I don't always know what a project will become when I start it.
 
-1. Capture real product screenshots.
-2. Replace generic scenes with project-specific SVG/canvas interactions.
-3. Add scroll-progress-driven transitions between the five story stages.
-4. Add Open Graph image + favicon.
-5. Add a subtle page-load intro, but keep it skippable and fast.
-6. Add project metadata from a local JSON file so the archive is easy to maintain.
+**That's part of the fun.**
+
+---
+
+## Tools I reach for
+
+**Python** · **JavaScript** · **HTML/CSS** · **SQL**
+
+I don't particularly care about using the fashionable stack.
+
+If a problem needs something I don't know yet, I learn it.
+
+---
+
+## A few things I've learned
+
+- A complicated system becomes easier once you can see its pieces.
+- Good tools often start as selfish projects.
+- Data is much more useful when someone can actually understand it.
+- Not every experiment needs to become a product.
+- Sometimes the best way to understand something is to build it yourself.
+
+---
+
+## Currently
+
+🔬 Taking systems apart  
+🛠️ Building small useful things  
+📊 Working with messy data  
+🧪 Experimenting  
+📍 Building things around problems I actually encounter
+
+---
+
+## Find me
+
+**GitHub:** [@itskaerox](https://github.com/itskaerox)
+
+---
+
+<sub>Built because something was bothering me.</sub>

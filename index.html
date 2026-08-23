@@ -38,30 +38,73 @@
   <div class="annotation">curiosity<br>+ code<br><span>→ clarity</span></div>
 </section>
 
-<section id="how" class="dark process">
+<section id="how" class="dark process" data-assembly>
   <div class="section-title"><b></b> HOW IT STARTS</div>
-  <div class="process-track">
-    <article class="process-step">
-      <span>01</span><h3>Something<br>bothers me.</h3>
-      <div class="scribble"><i></i><i></i><i></i><i></i><i></i></div>
-    </article>
-    <article class="process-step">
-      <span>02</span><h3>I take it<br>apart.</h3>
-      <div class="pieces"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    </article>
-    <article class="process-step">
-      <span>03</span><h3>I look for<br>patterns.</h3>
-      <div class="dot-matrix"></div>
-    </article>
-    <article class="process-step">
-      <span>04</span><h3>I build<br>something.</h3>
-      <div class="wire-cube"><i></i></div>
-    </article>
-    <article class="process-step">
-      <span>05</span><h3>Maybe it helps<br>someone else too.</h3>
-      <div class="rings"><i></i></div>
-    </article>
+
+  <div class="assembly-stage">
+    <div class="assembly-copy">
+      <p class="assembly-step" data-step="0"><span>01</span> SOMETHING<br>BOTHERS ME.</p>
+      <p class="assembly-step" data-step="1"><span>02</span> I TAKE IT<br>APART.</p>
+      <p class="assembly-step" data-step="2"><span>03</span> I LOOK FOR<br>PATTERNS.</p>
+      <p class="assembly-step" data-step="3"><span>04</span> I BUILD<br>SOMETHING.</p>
+      <p class="assembly-step" data-step="4"><span>05</span> MAYBE IT HELPS<br>SOMEONE ELSE TOO.</p>
+    </div>
+
+    <div class="assembly-canvas" aria-label="Animated fragments assembling into a cube">
+      <div class="assembly-status"><span id="assembly-status">DISASSEMBLED</span><b id="assembly-percent">00%</b></div>
+
+      <svg id="assembly-svg" viewBox="-300 -220 600 440" role="img">
+        <g class="cube-lines" fill="none">
+          <path data-edge="0" d="M-120 -70 L0 -140"/>
+          <path data-edge="1" d="M0 -140 L120 -70"/>
+          <path data-edge="2" d="M120 -70 L120 70"/>
+          <path data-edge="3" d="M120 70 L0 140"/>
+          <path data-edge="4" d="M0 140 L-120 70"/>
+          <path data-edge="5" d="M-120 70 L-120 -70"/>
+          <path data-edge="6" d="M-120 -70 L0 0"/>
+          <path data-edge="7" d="M0 -140 L0 0"/>
+          <path data-edge="8" d="M120 -70 L0 0"/>
+          <path data-edge="9" d="M120 70 L0 0"/>
+          <path data-edge="10" d="M0 140 L0 0"/>
+          <path data-edge="11" d="M-120 70 L0 0"/>
+        </g>
+
+        <g class="cube-nodes">
+          <circle data-node="0" cx="-120" cy="-70" r="5"/>
+          <circle data-node="1" cx="0" cy="-140" r="5"/>
+          <circle data-node="2" cx="120" cy="-70" r="5"/>
+          <circle data-node="3" cx="120" cy="70" r="5"/>
+          <circle data-node="4" cx="0" cy="140" r="5"/>
+          <circle data-node="5" cx="-120" cy="70" r="5"/>
+          <circle data-node="6" cx="0" cy="0" r="5"/>
+        </g>
+
+        <g class="assembly-fragments">
+          <rect data-fragment="0" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="1" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="2" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="3" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="4" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="5" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="6" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="7" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="8" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="9" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="10" x="-8" y="-8" width="16" height="16" rx="1"/>
+          <rect data-fragment="11" x="-8" y="-8" width="16" height="16" rx="1"/>
+        </g>
+
+        <g class="assembly-labels">
+          <text x="0" y="-188">QUESTION</text>
+          <text x="145" y="118">SYSTEM</text>
+          <text x="-235" y="118">TOOL</text>
+        </g>
+      </svg>
+
+      <button type="button" class="replay-assembly" id="replay-assembly">REPLAY ↻</button>
+    </div>
   </div>
+
   <p class="process-end">That's usually how it goes. <strong>— itskaero</strong></p>
 </section>
 

@@ -10,21 +10,40 @@ const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 let currentKey="meritnama";
 
 function sceneFor(type){
- const el=document.createElement("div");
- if(type==="merit"){
-   [["3,473+ candidates",9,22],["preferences",35,17],["quotas",15,53],["seats",41,61],["marks",60,27],["allocate()",70,61]].forEach((x,i)=>{let c=document.createElement("div");c.className="data-chip"+(i===5?" hot":"");c.textContent=x[0];c.style.left=x[1]+"%";c.style.top=x[2]+"%";c.style.animationDelay=(-i*.35)+"s";el.appendChild(c)});
-   [[18,31,70,35],[43,28,22,31],[49,66,25,-18],[60,40,18,31]].forEach(x=>{let l=document.createElement("div");l.className="network-line";l.style.left=x[0]+"%";l.style.top=x[1]+"%";l.style.width=x[2]+"%";l.style.transform=`rotate(${x[3]}deg)`;el.appendChild(l)});
-   for(let i=0;i<9;i++){let b=document.createElement("div");b.className="bar";b.style.left=(10+i*8)+"%";b.style.height=(25+((i*17)%70))+"px";el.appendChild(b)}
- }else if(type==="nabz"){
-   let c=document.createElement("div");c.className="rx-card";c.innerHTML="<small>PATIENT</small><br><strong>AHMAD R.</strong><br><br><small>RX</small><div class='rx-rule'></div><div class='rx-rule' style='width:60%'></div><div class='urdu'>مریض کو ہدایات</div><div class='rx-stamp'>LOCAL<br>FIRST</div>";el.appendChild(c);
- }else if(type==="micro"){
-   let grid=document.createElement("div");grid.className="micro-grid";[45,72,55,90,62,78,50].forEach((h,i)=>{let s=document.createElement("span");s.style.setProperty("--h",h+"%");s.style.animationDelay=(-i*.2)+"s";grid.appendChild(s)});el.appendChild(grid);
- }else{
-   [["AUTH",16,25],["DATA",42,18],["AUDIT",67,32],["SQL",28,62],["BUILD",63,67]].forEach((x,i)=>{let c=document.createElement("div");c.className="data-chip"+(i===4?" hot":"");c.textContent=x[0];c.style.left=x[1]+"%";c.style.top=x[2]+"%";el.appendChild(c)});
- }
- return el;
-}
+  const wrap=document.createElement("div");
+  wrap.className="project-assembly";
+  const grid=document.createElement("div"); grid.className="assembly-grid"; wrap.appendChild(grid);
 
+  const targetMap={
+    merit:{label:"ALLOCATION SYSTEM", points:[[38,38],[50,25],[62,38],[62,62],[50,75],[38,62],[50,50]]},
+    nabz:{label:"PRESCRIPTION", points:[[36,32],[64,32],[64,68],[36,68],[50,50]]},
+    micro:{label:"LOCAL RESISTANCE", points:[[30,40],[45,27],[65,40],[58,67],[38,67],[50,50]]},
+    system:{label:"SYSTEM", points:[[35,35],[65,35],[65,65],[35,65],[50,50]]},
+    local:{label:"LOCAL DATA", points:[[32,42],[48,28],[68,43],[58,68],[38,68],[50,50]]}
+  };
+  const cfg=targetMap[type]||targetMap.system;
+  const starts=[
+    [8,12],[23,82],[78,13],[92,72],[11,56],[72,88],
+    [52,8],[87,43],[28,18],[60,94],[4,87],[94,18]
+  ];
+  for(let i=0;i<12;i++){
+    const f=document.createElement("i");
+    f.className="fragment"+(i%4===0?" hot":"");
+    const t=cfg.points[i%cfg.points.length];
+    f.style.setProperty("--sx",starts[i][0]+"%");
+    f.style.setProperty("--sy",starts[i][1]+"%");
+    f.style.setProperty("--tx",t[0]+"%");
+    f.style.setProperty("--ty",t[1]+"%");
+    f.style.setProperty("--r",((i*47)%140-70)+"deg");
+    f.style.setProperty("--delay",(i*.055)+"s");
+    wrap.appendChild(f);
+  }
+  const target=document.createElement("div"); target.className="target"; wrap.appendChild(target);
+  const dot=document.createElement("div"); dot.className="target-dot"; wrap.appendChild(dot);
+  const label=document.createElement("div"); label.className="target-label"; label.textContent=cfg.label; wrap.appendChild(label);
+  const note=document.createElement("div"); note.className="scene-note"; note.textContent="FRAGMENTS → PATTERN → TOOL"; wrap.appendChild(note);
+  return wrap;
+}
 function showProject(key,scroll=true){
  currentKey=key; const p=projects[key];
  $("#case-kicker").textContent=p.kicker;$("#case-title").textContent=p.title;$("#case-sub").textContent=p.sub;$("#case-body").textContent=p.body;$("#case-stack").textContent=p.stack;
@@ -62,5 +81,97 @@ hero.addEventListener("pointerleave",()=>title.style.transform="");
 const dot=$(".cursor-dot"),ring=$(".cursor-ring");
 window.addEventListener("pointermove",e=>{dot.style.left=e.clientX+"px";dot.style.top=e.clientY+"px";ring.animate({left:e.clientX+"px",top:e.clientY+"px"},{duration:160,fill:"forwards"})});
 $$("a,button").forEach(el=>{el.addEventListener("mouseenter",()=>{ring.style.width="50px";ring.style.height="50px"});el.addEventListener("mouseleave",()=>{ring.style.width="34px";ring.style.height="34px"})});
+
+
+/* v3: real fragment assembly driven by scroll */
+(function initAssembly(){
+  const section=document.querySelector("[data-assembly]");
+  if(!section)return;
+  const stage=section.querySelector(".assembly-stage");
+  const svg=section.querySelector("#assembly-svg");
+  const fragments=[...section.querySelectorAll("[data-fragment]")];
+  const edges=[...section.querySelectorAll("[data-edge]")];
+  const nodes=[...section.querySelectorAll("[data-node]")];
+  const labels=[...section.querySelectorAll(".assembly-labels text")];
+  const steps=[...section.querySelectorAll(".assembly-step")];
+  const percent=section.querySelector("#assembly-percent");
+  const status=section.querySelector("#assembly-status");
+  const replay=section.querySelector("#replay-assembly");
+  const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const targets=[
+    [-120,-70],[0,-140],[120,-70],[120,70],[0,140],[-120,70],[0,0],
+    [-60,-105],[60,-105],[60,35],[-60,35],[0,70]
+  ];
+  const starts=[
+    [-255,-135],[-120,205],[235,-155],[-270,80],[220,190],[-205,165],
+    [250,30],[-20,-205],[145,215],[-250,-15],[190,-20],[-95,220]
+  ];
+  const rotations=[-35,28,72,-20,48,-60,32,-18,55,-42,20,-75];
+
+  function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
+  function lerp(a,b,t){return a+(b-a)*t}
+  function draw(raw){
+    const p=Math.max(0,Math.min(1,raw));
+    const ep=ease(p);
+    fragments.forEach((f,i)=>{
+      const delay=i*.025;
+      const local=Math.max(0,Math.min(1,(ep-delay)/(1-delay)));
+      const x=lerp(starts[i][0],targets[i][0],local);
+      const y=lerp(starts[i][1],targets[i][1],local);
+      const r=lerp(rotations[i],0,local);
+      f.setAttribute("transform",`translate(${x} ${y}) rotate(${r})`);
+      f.style.opacity=String(1-Math.max(0,local-.72)*2.2);
+    });
+    edges.forEach((e,i)=>{
+      const on=Math.max(0,Math.min(1,(p-(.52+i*.025))/.35));
+      const len=e.getTotalLength();
+      e.style.strokeDasharray=len;
+      e.style.strokeDashoffset=len*(1-on);
+      e.style.opacity=String(on);
+    });
+    nodes.forEach((n,i)=>{
+      const on=Math.max(0,Math.min(1,(p-.75-i*.02)/.25));
+      n.style.opacity=String(on);
+      n.style.transform=`scale(${.65+.35*on})`;
+      n.style.transformOrigin="center";
+    });
+    labels.forEach((l,i)=>{
+      const on=Math.max(0,Math.min(1,(p-.84-i*.04)/.16));
+      l.style.opacity=String(on);
+    });
+    const pct=Math.round(p*100);
+    percent.textContent=String(pct).padStart(2,"0")+"%";
+    status.textContent=p<.22?"DISASSEMBLED":p<.52?"INVESTIGATING":p<.82?"ASSEMBLING":"BUILT";
+    steps.forEach((s,i)=>s.classList.toggle("active",i===Math.min(4,Math.floor(p*5))));
+    stage.classList.toggle("assembled",p>.96);
+  }
+
+  let raf=0;
+  function update(){
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(()=>{
+      const r=section.getBoundingClientRect();
+      const travel=Math.max(1,section.offsetHeight-window.innerHeight);
+      const p=Math.max(0,Math.min(1,(-r.top+window.innerHeight*.12)/travel));
+      draw(p);
+    });
+  }
+  window.addEventListener("scroll",update,{passive:true});
+  window.addEventListener("resize",update);
+
+  replay.addEventListener("click",()=>{
+    if(reduced){draw(1);return}
+    const start=performance.now();
+    function loop(now){
+      const t=Math.min(1,(now-start)/1500);
+      draw(t);
+      if(t<1)requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  });
+
+  draw(reduced?1:0);
+})();
 
 showProject("meritnama",false);
