@@ -1,112 +1,45 @@
-# 🧬 KAERO | Medical-Tech Engineer  
+# itskaero Landing Page — v2
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/itskaero/itskaero/refs/heads/main/banner.png" />
-</p>
+Interactive static landing page for the itskaero project archive.
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Focus-Medical%20Technology-00E7FF?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Code-Python%20%7C%20JS%20%7C%20Vue-00E7FF?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Build-Healthcare%20Tools-00E7FF?style=for-the-badge" />
-</p>
+## What changed in v2
 
----
+This version moves beyond a card-based portfolio and uses the design concept:
 
-## 🩺 About Me  
+**problem → take apart → find patterns → build → result**
 
-I am a **medical graduate and hobbyist tech developer**, passionate about building  
-**intelligent digital solutions for healthcare, automation, and gaming ecosystems.**
+### Interactive pieces
 
-I focus on **optimizing clinical workflows, improving hospital efficiency, and creating medical utility tools** — blending **medicine, engineering, and design.**
+- Cursor-following hero interaction
+- Animated orbit / data-field details
+- Scroll-revealed process steps
+- Project constellation with category filters
+- Project-specific visual scenes
+  - MeritNama: candidates / preferences / quotas / seats / allocation
+  - Nabz: prescription-paper scene with bilingual treatment
+  - Antibiome / Antibiotigram: microbiology / susceptibility visualization
+  - Nigheban / BahawalpurNama: system/data experiments
+- Five-step project story timeline
+- Project-specific "next project" transitions
+- Responsive mobile layout
+- `prefers-reduced-motion` fallback
+- No framework or build step
 
-> *Engineering healthcare through intelligent code.*
+## Deploy
 
----
+Put `index.html`, `style.css`, and `script.js` in the root of the GitHub Pages repository.
 
-## ⚙️ What I Build  
+## Important
 
-### 🏥 Medical Technology  
-- Induction & rotation **tracking systems**  
-- Clinical **workflow automation tools**  
-- Medical calculators & **decision-support utilities**  
-- Hospital productivity dashboards  
+The visual scenes are deliberately lightweight representations, not screenshots. The next production pass can replace them with actual screenshots, SVG reconstructions, or live mini-interactions from each product.
 
-### 🤖 Discord Bots & Automation  
-- Advanced **custom Discord bots**  
-- Automation & moderation systems  
-- **Image generation pipelines**  
-- Brawlhalla **custom leaderboard generator**  
+The project URLs are already wired to the `itskaero.github.io` pages and `itskaerox` GitHub repositories used by the archive. Update any URL if a project moves.
 
-### 🎮 Gaming Utilities  
-- Game stat dashboards  
-- Custom API integrations  
-- Image-based ranking systems  
+## Suggested next production pass
 
----
-
-## 🧠 Tech Stack  
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,python,vue,nodejs,git,github" />
-</p>
-
-**Languages:** HTML • CSS • JavaScript • Python  
-**Frameworks:** Vue.js • Node.js  
-**Tools:** Discord.js • REST APIs • Automation Scripting • Git  
-
----
-
-## 🧪 Current Focus  
-
-- 🏥 Medical induction tracking platforms  
-- ⚙️ Healthcare workflow optimization tools  
-- 🤖 Advanced Discord automation bots  
-- 📊 Clinical dashboards & analytics  
-
----
-
-## 🎨 Creative Side  
-
-- ✏️ Sketching & digital drawing  
-- 📸 Photography  
-- 🎮 Gaming content & creative experiments  
-
----
-
-## 📊 GitHub Analytics  
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=itskaero&show_icons=true&theme=tokyonight&hide_border=true" />
-</p>
-
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=itskaero&theme=tokyonight&hide_border=true" />
-</p>
-
-<p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=itskaero&theme=tokyo-night&hide_border=true" />
-</p>
-
----
-
-## 🌐 Connect  
-
-<p align="center">
-  <a href="mailto:itskaero@gmail.com">
-    <img src="https://img.shields.io/badge/Email-itskaero@gmail.com-00E7FF?style=for-the-badge&logo=gmail&logoColor=white" />
-  </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/Discord-itskaero-00E7FF?style=for-the-badge&logo=discord&logoColor=white" />
-  </a>
-  <a href="#">
-    <img src="https://img.shields.io/badge/GitHub-itskaero-00E7FF?style=for-the-badge&logo=github&logoColor=white" />
-  </a>
-</p>
-
----
-
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=00E7FF&height=120&section=footer"/>
-</p>
-
-⭐ *Building intelligent healthcare systems through code, creativity, and clinical insight.*
+1. Capture real product screenshots.
+2. Replace generic scenes with project-specific SVG/canvas interactions.
+3. Add scroll-progress-driven transitions between the five story stages.
+4. Add Open Graph image + favicon.
+5. Add a subtle page-load intro, but keep it skippable and fast.
+6. Add project metadata from a local JSON file so the archive is easy to maintain.
