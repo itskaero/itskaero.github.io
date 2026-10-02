@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NAMA — the design system of the nama family</title>
+<meta name="description" content="One skeleton, one accent per member. The shared design system behind MeritNama, medNAMA, Nabz and the rest of the nama family.">
+<meta name="theme-color" content="#04070e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="nama.css">
+<style>
+  /* Page scaffolding for the spec itself. Everything that could be a
+     system primitive already is one — this file only lays things out. */
+  body { transition: background var(--t-cine) var(--ease); }
+
+  .ds-nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+    padding: 12px var(--gutter);
+    background: rgba(4, 7, 14, 0.78);
+    border-bottom: 1px solid var(--nama-line);
+  }
+  @supports (backdrop-filter: blur(1px)) {
+    .ds-nav { background: rgba(4, 7, 14, 0.5); backdrop-filter: blur(16px) saturate(140%); }
+  }
+  .ds-nav a.home { display: inline-flex; align-items: center; gap: 10px; font-family: var(--nama-serif); font-size: 19px; }
+  .ds-nav a.home b {
+    display: grid; place-items: center; width: 27px; height: 27px; border-radius: 8px;
+    background: var(--accent); color: var(--accent-ink); font-size: 15px; font-weight: 400;
+    transition: background var(--t-slow) var(--ease), color var(--t-slow) var(--ease);
+  }
+
+  .ds-hero { position: relative; overflow: hidden; padding: var(--s-10) var(--gutter) var(--s-9); }
+  .ds-hero__glow {
+    position: absolute; left: 50%; top: -30%;
+    width: 70vw; aspect-ratio: 1; transform: translateX(-50%);
+    border-radius: 50%; background: var(--accent); filter: blur(130px); opacity: 0.16;
+    transition: background var(--t-cine) var(--ease);
+  }
+  .ds-hero__in { position: relative; max-width: var(--page); margin: 0 auto; }
+  .ds-hero h1 { margin: var(--s-4) 0 var(--s-5); max-width: 18ch; }
+  .ds-hero h1 em { font-style: italic; color: var(--accent); transition: color var(--t-cine) var(--ease); }
+
+  .ds { max-width: var(--page); margin: 0 auto; padding: 0 var(--gutter) var(--s-9); }
+  .ds-sec { padding-block: var(--s-8); border-top: 1px solid var(--nama-line); }
+  .ds-sec > header { display: grid; gap: var(--s-3); margin-bottom: var(--s-6); }
+  .ds-sec > header p { color: var(--nama-ink-2); max-width: 64ch; margin: 0; }
+  .ds-num { font-family: var(--nama-mono); font-size: var(--t-micro); letter-spacing: 0.16em; color: var(--nama-ink-4); }
+
+  .ds-row { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
+  .ds-grid { display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .ds-two { display: grid; gap: var(--s-6); grid-template-columns: 1fr 1fr; }
+  @media (max-width: 820px) { .ds-two { grid-template-columns: 1fr; } }
+
+  /* swatch */
+  .sw { border: 1px solid var(--nama-line); border-radius: var(--r-2); overflow: hidden; background: var(--nama-panel); }
+  .sw b { display: block; height: 64px; }
+  .sw span { display: block; padding: 10px 12px; font-family: var(--nama-mono); font-size: 11px; line-height: 1.6; color: var(--nama-ink-2); }
+  .sw span i { display: block; font-style: normal; color: var(--nama-ink-4); }
+
+  /* member picker — clicking one re-tints this page, which IS the demo */
+  .pick { display: grid; gap: var(--s-3); grid-template-columns: repeat(auto-fit, minmax(132px, 1fr)); }
+  .pick button {
+    display: grid; gap: var(--s-3); padding: var(--s-4); cursor: pointer; text-align: left;
+    border: 1px solid var(--nama-line); border-radius: var(--r-2); background: var(--nama-panel);
+    transition: border-color var(--t-base) var(--ease), transform var(--t-base) var(--ease);
+  }
+  .pick button:hover { transform: translateY(-3px); }
+  .pick button[aria-pressed="true"] { border-color: var(--accent); }
+  .pick button b { display: block; height: 42px; border-radius: var(--r-1); background: var(--accent); }
+  .pick button em { font-style: normal; font-size: 14px; font-weight: 500; }
+  .pick button i { font-style: normal; font-family: var(--nama-mono); font-size: 11px; color: var(--nama-ink-3); }
+
+  /* type specimen */
+  .spec { display: grid; gap: var(--s-5); }
+  .spec > div { display: grid; gap: var(--s-2); padding-bottom: var(--s-5); border-bottom: 1px solid var(--nama-line-soft); }
+  .spec small { font-family: var(--nama-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--nama-ink-4); }
+
+  /* code */
+  pre {
+    margin: 0; padding: var(--s-4) var(--s-5); overflow-x: auto;
+    border: 1px solid var(--nama-line); border-radius: var(--r-2); background: #070c15;
+    font-family: var(--nama-mono); font-size: 13px; line-height: 1.7; color: var(--nama-ink-2);
+  }
+  pre b { color: var(--accent); font-weight: 400; }
+  pre i { color: var(--nama-ink-4); font-style: normal; }
+
+  /* rules */
+  .rules { display: grid; gap: var(--s-3); }
+  .rule { display: grid; grid-template-columns: 22px 1fr; gap: var(--s-3); align-items: start; padding: var(--s-4); border: 1px solid var(--nama-line-soft); border-radius: var(--r-2); }
+  .rule span { font-family: var(--nama-mono); font-size: 15px; line-height: 1.4; }
+  .rule.do span { color: var(--nama-teal); }
+  .rule.dont span { color: var(--nama-alert); }
+  .rule p { margin: 0; font-size: var(--t-small); line-height: 1.65; color: var(--nama-ink-2); }
+  .rule p b { color: var(--nama-ink); font-weight: 500; }
+
+  /* register demo */
+  .reg { border-radius: var(--r-3); border: 1px solid var(--nama-line); background: var(--nama-void); padding: var(--s-6); display: grid; gap: var(--s-4); }
+  .reg h4 { margin: 0; font-family: var(--nama-serif); font-weight: 400; font-size: 26px; letter-spacing: -0.02em; }
+  .reg p { margin: 0; color: var(--nama-ink-2); font-size: var(--t-small); }
+
+  /* motion demo */
+  .ease-card { display: grid; gap: var(--s-4); padding: var(--s-5); border: 1px solid var(--nama-line); border-radius: var(--r-2); background: var(--nama-panel); }
+  .ease-track { position: relative; height: 10px; border-radius: 999px; background: var(--nama-glass); }
+  .ease-track i { position: absolute; inset: 0 auto 0 0; width: 34px; border-radius: 999px; background: var(--accent); }
+  .ease-card.is-run .ease-track i { animation: slide 1.4s var(--ease) infinite alternate; }
+  .ease-card.is-run.linear .ease-track i { animation-timing-function: linear; }
+  @keyframes slide { to { transform: translateX(calc(100% * (var(--n, 8) - 1))); } }
+  .ease-card code { font-family: var(--nama-mono); font-size: 12px; color: var(--nama-ink-3); }
+</style>
+</head>
+<body data-accent="meritnama">
+
+<div class="nama-grain" aria-hidden="true"></div>
+
+<header class="ds-nav">
+  <a class="home" href="../"><b aria-hidden="true">n</b> <span>nama</span></a>
+  <span class="nama-eyebrow is-bare" id="live-label">Previewing · MeritNama</span>
+</header>
+
+<section class="ds-hero">
+  <div class="ds-hero__glow" aria-hidden="true"></div>
+  <div class="ds-hero__in">
+    <p class="nama-eyebrow">Design system · v1 · 2026</p>
+    <h1 class="nama-display">One skeleton,<br>one <em>accent</em> each.</h1>
+    <p class="nama-lede">The shared design language of the nama family — MeritNama, medNAMA,
+      Nabz, Antibiome and Antibiotogram. It was not designed up front.
+      Three of these projects independently arrived at the same easing curve, the same cool
+      off-white ink and the same rule about monospace numerals. This is that coincidence,
+      written down and made deliberate.</p>
+    <div class="ds-row" style="margin-top:var(--s-6)">
+      <a class="nama-btn nama-btn--solid" href="#accents">See the accents</a>
+      <a class="nama-btn nama-btn--ghost" href="nama.css">nama.css ↗</a>
+    </div>
+  </div>
+</section>
+
+<div class="ds">
+
+  <!-- 01 the idea -->
+  <section class="ds-sec">
+    <header>
+      <span class="ds-num">01</span>
+      <h2 class="nama-h2">The one idea</h2>
+      <p>Everything structural is shared. What distinguishes a family member is its accent,
+        set with a single attribute on <code class="nama-mono">&lt;body&gt;</code>. Nothing
+        else changes — not the type, not the spacing, not the radii, not the motion.</p>
+    </header>
+
+    <div class="ds-two">
+      <pre><i>&lt;!-- MeritNama --&gt;</i>
+&lt;body <b>data-accent="meritnama"</b>&gt;
+
+<i>&lt;!-- medNAMA --&gt;</i>
+&lt;body <b>data-accent="mednama"</b>&gt;
+
+<i>&lt;!-- Nabz: light clinical register --&gt;</i>
+&lt;body <b>data-accent="nabz"</b>
+      <b>data-register="clinical"</b>&gt;</pre>
+      <pre><i>/* every component reads the same two vars */</i>
+.thing {
+  border-color: <b>var(--accent)</b>;
+  background: <b>var(--accent-wash)</b>;
+  transition: border-color
+    <b>var(--t-base) var(--ease)</b>;
+}
+
+<i>/* so re-tinting animates for free */</i></pre>
+    </div>
+  </section>
+
+  <!-- 02 accents -->
+  <section class="ds-sec" id="accents">
+    <header>
+      <span class="ds-num">02</span>
+      <h2 class="nama-h2">Accent identities</h2>
+      <p>Pick one. The whole page re-tints — that is not a gimmick on this page, it is
+        literally the mechanism every family member ships with.</p>
+    </header>
+
+    <div class="pick" id="pick">
+      <button type="button" data-a="meritnama"    aria-pressed="true"><b></b><em>MeritNama</em><i>#2FE39A · mint</i></button>
+      <button type="button" data-a="mednama"      aria-pressed="false"><b></b><em>medNAMA</em><i>#EBD5BE · peach</i></button>
+      <button type="button" data-a="nabz"         aria-pressed="false"><b></b><em>Nabz</em><i>#19A06D · teal</i></button>
+      <button type="button" data-a="antibiome"    aria-pressed="false"><b></b><em>Antibiome</em><i>#7FD1A8 · sage</i></button>
+      <button type="button" data-a="antibiotogram" aria-pressed="false"><b></b><em>Antibiotogram</em><i>#D9A24A · amber</i></button>
+    </div>
+  </section>
+
+  <!-- 03 ground and ink -->
+  <section class="ds-sec">
+    <header>
+      <span class="ds-num">03</span>
+      <h2 class="nama-h2">Ground &amp; ink</h2>
+      <p>A near-black blue — the midpoint of MeritNama's <code class="nama-mono">#04060c</code>
+        and medNAMA's <code class="nama-mono">#000912</code>. Ink is a cool off-white and never
+        pure white: on a void ground, <code class="nama-mono">#fff</code> buzzes.</p>
+    </header>
+
+    <div class="ds-grid">
+      <div class="sw"><b style="background:#04070e"></b><span>void<i>#04070E</i></span></div>
+      <div class="sw"><b style="background:#080d16"></b><span>deep<i>#080D16</i></span></div>
+      <div class="sw"><b style="background:#0d1420"></b><span>panel<i>#0D1420</i></span></div>
+      <div class="sw"><b style="background:#121b29"></b><span>raised<i>#121B29</i></span></div>
+      <div class="sw"><b style="background:#eef3f4"></b><span>ink<i>#EEF3F4</i></span></div>
+      <div class="sw"><b style="background:rgba(238,243,244,.70)"></b><span>ink-2<i>70% ink</i></span></div>
+      <div class="sw"><b style="background:rgba(238,243,244,.44)"></b><span>ink-3<i>44% ink</i></span></div>
+      <div class="sw"><b style="background:rgba(238,243,244,.10)"></b><span>line<i>10% ink</i></span></div>
+    </div>
+  </section>
+
+  <!-- 04 type -->
+  <section class="ds-sec">
+    <header>
+      <span class="ds-num">04</span>
+      <h2 class="nama-h2">Type</h2>
+      <p>A serif display face against IBM Plex Sans. The contrast between the two
+        <em>is</em> the family's personality, so no third decorative face is ever added.
+        Monospace is reserved: it means “this is a precise value”, which in Nabz is a
+        dose-legibility safety property, not a style choice.</p>
+    </header>
+
+    <div class="spec">
+      <div><small>Display · Instrument Serif · clamp(46px, 8.4vw, 118px)</small>
+        <p class="nama-display" style="max-width:16ch">Know where you stand.</p></div>
+      <div><small>H2 · serif · clamp(26px, 3.4vw, 42px)</small>
+        <p class="nama-h2">Learn from the source.</p></div>
+      <div><small>H3 · IBM Plex Sans 500</small>
+        <p class="nama-h3">Less paperwork. More medicine.</p></div>
+      <div><small>Body · IBM Plex Sans · 17px / 1.55</small>
+        <p class="nama-lede">Culture surveillance that turns microbiology data into local
+          resistance patterns, so antibiotic guidelines can be written from here.</p></div>
+      <div><small>Mono · IBM Plex Mono · tabular numerals</small>
+        <p class="nama-mono" style="font-size:19px">3,473 candidates · 476 placed · 7.5 mg/kg TID</p></div>
+      <div><small>Urdu · Nastaʿlīq · RTL, with LTR tokens isolated</small>
+        <p class="nama-urdu" style="font-size:21px">دن میں تین بار <span class="nama-ltr">7.5 ml</span> دیں</p></div>
+    </div>
+  </section>
+
+  <!-- 05 components -->
+  <section class="ds-sec">
+    <header>
+      <span class="ds-num">05</span>
+      <h2 class="nama-h2">Components</h2>
+      <p>Small and few on purpose. A pill is a status and never holds an action; a button
+        is an action and never reports a state.</p>
+    </header>
+
+    <div class="ds-row" style="margin-bottom:var(--s-6)">
+      <button class="nama-btn nama-btn--solid">Solid action</button>
+      <button class="nama-btn nama-btn--ghost">Ghost action</button>
+      <button class="nama-btn nama-btn--quiet">Quiet action ↗</button>
+      <span class="nama-pill"><i class="nama-live"></i>Live</span>
+      <span class="nama-pill">Experiment</span>
+      <span class="nama-pill nama-pill--accent">In progress</span>
+    </div>
+
+    <div class="ds-two">
+      <div>
+        <p class="nama-eyebrow" style="margin-bottom:var(--s-4)">Semantic states</p>
+        <div class="ds-row">
+          <span class="nama-state nama-state--ok">Vetted</span>
+          <span class="nama-state nama-state--warn">Unverified</span>
+          <span class="nama-state nama-state--danger">Allergy</span>
+        </div>
+        <p style="color:var(--nama-ink-2);font-size:var(--t-small);margin-top:var(--s-4)">
+          Each state carries a glyph <em>and</em> a border, never colour alone. A mono
+          printer and a colourblind reader must receive the same message.</p>
+      </div>
+      <div>
+        <p class="nama-eyebrow" style="margin-bottom:var(--s-4)">Stats</p>
+        <div class="ds-row" style="gap:var(--s-7)">
+          <div class="nama-stat"><span class="nama-stat__num">3,473</span><span class="nama-stat__lab">Candidates</span></div>
+          <div class="nama-stat"><span class="nama-stat__num">12,717</span><span class="nama-stat__lab">Questions</span></div>
+          <div class="nama-stat"><span class="nama-stat__num">369</span><span class="nama-stat__lab">Slots</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 motion -->
+  <section class="ds-sec">
+    <header>
+      <span class="ds-num">06</span>
+      <h2 class="nama-h2">Motion</h2>
+      <p>One curve: <code class="nama-mono">cubic-bezier(.2, .8, .2, 1)</code>. All three
+        original repos had already converged on it, which makes it the family's truest
+        signature — a fast start that settles rather than stops.</p>
+    </header>
+
+    <div class="ds-two">
+      <div class="ease-card is-run">
+        <code>--ease · cubic-bezier(.2, .8, .2, 1)</code>
+        <div class="ease-track"><i></i></div>
+        <p style="margin:0;color:var(--nama-ink-2);font-size:var(--t-small)">Arrives early, decelerates long. Reads as weight.</p>
+      </div>
+      <div class="ease-card is-run linear">
+        <code>linear · for comparison</code>
+        <div class="ease-track"><i></i></div>
+        <p style="margin:0;color:var(--nama-ink-2);font-size:var(--t-small)">Mechanical. The family never uses it for position.</p>
+      </div>
+    </div>
+
+    <div class="ds-grid" style="margin-top:var(--s-5)">
+      <div class="nama-panel" style="padding:var(--s-4)"><p class="nama-mono" style="margin:0">--t-fast<br><span style="color:var(--nama-ink-3)">160ms · hover, press</span></p></div>
+      <div class="nama-panel" style="padding:var(--s-4)"><p class="nama-mono" style="margin:0">--t-base<br><span style="color:var(--nama-ink-3)">260ms · state change</span></p></div>
+      <div class="nama-panel" style="padding:var(--s-4)"><p class="nama-mono" style="margin:0">--t-slow<br><span style="color:var(--nama-ink-3)">440ms · panels, reveals</span></p></div>
+      <div class="nama-panel" style="padding:var(--s-4)"><p class="nama-mono" style="margin:0">--t-cine<br><span style="color:var(--nama-ink-3)">900ms · entrances, re-tints</span></p></div>
+    </div>
+  </section>
+
+  <!-- 07 registers -->
+  <section class="ds-sec">
+    <header>
+      <span class="ds-num">07</span>
+      <h2 class="nama-h2">Two registers</h2>
+      <p>The void is the default: calm, dark, data-forward. The clinical register inverts
+        the ground for anything a doctor uses at speed or a patient has to read on paper.
+        Same structure, same tokens, opposite ground — Nabz ships light by default and
+        never auto-switches to dark, because dark murders Nastaʿlīq legibility and trust.</p>
+    </header>
+
+    <div class="ds-two">
+      <div class="reg">
+        <span class="nama-eyebrow">Default · void</span>
+        <h4>Know where you stand.</h4>
+        <p>Dashboards, analytics, long reading sessions at night.</p>
+        <div class="ds-row">
+          <button class="nama-btn nama-btn--solid">Primary</button>
+          <span class="nama-state nama-state--ok">Vetted</span>
+        </div>
+      </div>
+      <div class="reg" data-register="clinical" data-accent="nabz">
+        <span class="nama-eyebrow">data-register="clinical"</span>
+        <h4>Less paperwork. More medicine.</h4>
+        <p>Instruments used at speed, and documents handed to a patient.</p>
+        <div class="ds-row">
+          <button class="nama-btn nama-btn--solid">Primary</button>
+          <span class="nama-state nama-state--ok">Vetted</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 rules -->
+  <section class="ds-sec">
+    <header>
+      <span class="ds-num">08</span>
+      <h2 class="nama-h2">The rules that actually bind</h2>
+      <p>A token file is easy to follow. These are the parts that take discipline.</p>
+    </header>
+
+    <div class="rules">
+      <div class="rule do"><span>✓</span><p><b>Colour means something or isn't used.</b> Accent for action and emphasis, teal for vetted, amber for unverified, red for danger. Everything else is ink.</p></div>
+      <div class="rule dont"><span>✕</span><p><b>Red is never decorative.</b> If red appears anywhere it isn't danger, it stops meaning danger — and then it stops working where it matters.</p></div>
+      <div class="rule do"><span>✓</span><p><b>Spend boldness in exactly one place per screen.</b> One hero element carries the eye; everything around it stays quiet so it can.</p></div>
+      <div class="rule do"><span>✓</span><p><b>Encode state in more than one channel.</b> Glyph plus border plus label. Colour reinforces; it never carries the message alone.</p></div>
+      <div class="rule dont"><span>✕</span><p><b>No third typeface.</b> The serif-against-Plex contrast is the personality. A display face added on top only dilutes it.</p></div>
+      <div class="rule do"><span>✓</span><p><b>Monospace means a precise value.</b> Doses, IDs, ranks, counts. Keep it out of prose, and out of patient-facing Urdu entirely.</p></div>
+      <div class="rule do"><span>✓</span><p><b>Every animated primitive has a correct still state.</b> Under <code class="nama-mono">prefers-reduced-motion</code> the page must be finished, not frozen mid-entrance.</p></div>
+      <div class="rule dont"><span>✕</span><p><b>Never the cream-paper cliché.</b> Warm beige for “document” reads as generic. Warmth comes from the in-palette peach and rose instead.</p></div>
+    </div>
+  </section>
+
+  <!-- 09 use it -->
+  <section class="ds-sec">
+    <header>
+      <span class="ds-num">09</span>
+      <h2 class="nama-h2">Using it</h2>
+      <p>One stylesheet, two attributes, three fonts. It is deliberately a plain CSS file
+        with no build step — every family member can link it directly.</p>
+    </header>
+
+    <pre>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=<b>Instrument+Serif</b>:ital@0;1
+  &amp;family=<b>IBM+Plex+Sans</b>:wght@400;500;600
+  &amp;family=<b>IBM+Plex+Mono</b>:wght@400;500&amp;display=swap" rel="stylesheet"&gt;
+
+&lt;link rel="stylesheet" href="<b>https://itskaero.github.io/nama/nama.css</b>"&gt;
+
+&lt;body data-accent="<b>mednama</b>"&gt;
+  &lt;div class="nama-grain"&gt;&lt;/div&gt;
+  &lt;p class="nama-eyebrow"&gt;Learn from the source&lt;/p&gt;
+  &lt;h1 class="nama-display"&gt;Practice with purpose.&lt;/h1&gt;
+  &lt;a class="nama-btn nama-btn--solid" href="#"&gt;Open&lt;/a&gt;
+&lt;/body&gt;</pre>
+  </section>
+
+</div>
+
+<footer style="border-top:1px solid var(--nama-line);padding:var(--s-6) var(--gutter)">
+  <div style="max-width:var(--page);margin:0 auto;display:flex;flex-wrap:wrap;gap:var(--s-4);justify-content:space-between" class="nama-mono">
+    <span style="color:var(--nama-ink-3)">NAMA · design system · v1</span>
+    <a class="nama-link" href="../">itskaero.github.io</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var pick = document.getElementById('pick');
+  var label = document.getElementById('live-label');
+  if (!pick) return;
+
+  var names = {
+    meritnama: 'MeritNama', mednama: 'medNAMA', nabz: 'Nabz',
+    antibiome: 'Antibiome', antibiotogram: 'Antibiotogram'
+  };
+
+  pick.addEventListener('click', function (e) {
+    var btn = e.target.closest('button[data-a]');
+    if (!btn) return;
+    var a = btn.getAttribute('data-a');
+    document.body.setAttribute('data-accent', a);
+    Array.prototype.forEach.call(pick.querySelectorAll('button'), function (b) {
+      b.setAttribute('aria-pressed', String(b === btn));
+    });
+    if (label) label.textContent = 'Previewing · ' + (names[a] || a);
+  });
+
+  // The ease comparison needs to know how far to travel.
+  Array.prototype.forEach.call(document.querySelectorAll('.ease-track'), function (t) {
+    var i = t.firstElementChild;
+    if (i) i.style.setProperty('--n', String(Math.max(2, Math.round(t.clientWidth / i.clientWidth))));
+  });
+}());
+</script>
+</body>
+</html>

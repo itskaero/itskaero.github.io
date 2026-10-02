@@ -1,0 +1,474 @@
+/* =====================================================================
+   NAMA — the shared design system of the nama family
+   meritnama · medNAMA · nabz · antibiome · antibiotogram
+   ---------------------------------------------------------------------
+   ONE SKELETON, ONE ACCENT PER MEMBER.
+
+   Everything structural is shared: the void ground, the cool ink ramp,
+   IBM Plex + a serif display face, the 4px space scale, and one easing
+   curve — which all three original repos had already converged on by
+   accident, which makes it the family's truest signature.
+
+   What distinguishes a member is its ACCENT, set with one attribute:
+       <body data-accent="meritnama">
+   Nothing else changes. That is the whole trick.
+
+   Two registers:
+       default                   void. Dark, calm, data-forward.
+       data-register="clinical"  light. Near-white, trust-forward.
+   ===================================================================== */
+
+/* ── 1. TOKENS ─────────────────────────────────────────────────────── */
+
+:root {
+  /* surface — the void */
+  --nama-void:      #04070e;   /* page ground */
+  --nama-deep:      #080d16;   /* alternating band */
+  --nama-panel:     #0d1420;   /* card */
+  --nama-raised:    #121b29;   /* card on card */
+  --nama-glass:     rgba(238, 243, 244, 0.045);
+
+  /* ink — cool off-white, never pure white */
+  --nama-ink:       #eef3f4;
+  --nama-ink-2:     rgba(238, 243, 244, 0.70);   /* secondary prose */
+  --nama-ink-3:     rgba(238, 243, 244, 0.44);   /* tertiary / meta */
+  --nama-ink-4:     rgba(238, 243, 244, 0.22);   /* disabled / ghost */
+  --nama-line:      rgba(238, 243, 244, 0.10);   /* hairline */
+  --nama-line-soft: rgba(238, 243, 244, 0.055);  /* faint divider */
+
+  /* signals — the family's whole colour vocabulary */
+  --nama-mint:  #2fe39a;   /* meritnama    data, rank, "you are here" */
+  --nama-cyan:  #4db8d9;   /* meritnama 2 */
+  --nama-sky:   #56aae2;   /* system       links, neutral emphasis */
+  --nama-peach: #ebd5be;   /* medNAMA      study, warmth, source text */
+  --nama-rose:  #d39794;   /* medNAMA 2    dusk */
+  --nama-teal:  #19a06d;   /* nabz         clinical, vetted, safe */
+  --nama-amber: #d9a24a;   /* caution, unverified */
+  --nama-alert: #e0716a;   /* danger only — never decorative */
+
+  /* accent — remapped per member, see §2. Default is system sky. */
+  --accent:       var(--nama-sky);
+  --accent-2:     var(--nama-mint);
+  --accent-ink:   #04070e;                    /* text ON the accent */
+  --accent-wash:  rgba(86, 170, 226, 0.12);
+  --accent-glow:  rgba(86, 170, 226, 0.34);
+
+  /* type */
+  --nama-serif: "Instrument Serif", "Bespoke Serif", Georgia, serif;
+  --nama-sans:  "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --nama-mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --nama-urdu:  "Noto Nastaliq Urdu", serif;
+
+  /* type scale — fluid, so one scale serves phone to desk */
+  --t-display: clamp(46px, 8.4vw, 118px);
+  --t-h1:      clamp(34px, 5.2vw, 68px);
+  --t-h2:      clamp(26px, 3.4vw, 42px);
+  --t-h3:      clamp(19px, 2vw,   25px);
+  --t-body:    17px;
+  --t-small:   14px;
+  --t-micro:   11px;
+
+  /* space — 4px base */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 140px;
+
+  /* radius — nabz's 8px instruments through medNAMA's 22px panels */
+  --r-1: 8px; --r-2: 14px; --r-3: 22px; --r-4: 30px; --r-pill: 999px;
+
+  /* motion — ONE curve. All three repos already used it. */
+  --ease:        cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-liquid: cubic-bezier(0.33, 1.12, 0.28, 1);
+  --t-fast: 160ms; --t-base: 260ms; --t-slow: 440ms; --t-cine: 900ms;
+
+  /* elevation — the void needs depth, not shine */
+  --lift-1: 0 1px 2px rgba(0, 0, 0, 0.40);
+  --lift-2: 0 10px 30px -10px rgba(0, 0, 0, 0.60);
+  --lift-3: 0 30px 80px -24px rgba(0, 0, 0, 0.75);
+
+  /* layout */
+  --measure: 62ch;    /* max prose width */
+  --page:    1180px;  /* max content width */
+  --gutter:  max(20px, 5vw);
+}
+
+/* ── 2. ACCENT IDENTITIES ──────────────────────────────────────────── */
+/* One attribute is the entire difference between two family members. */
+
+[data-accent="meritnama"] {
+  --accent: var(--nama-mint); --accent-2: var(--nama-cyan);
+  --accent-ink: #04070e;
+  --accent-wash: rgba(47, 227, 154, 0.12);
+  --accent-glow: rgba(47, 227, 154, 0.32);
+}
+[data-accent="mednama"] {
+  --accent: var(--nama-peach); --accent-2: var(--nama-rose);
+  --accent-ink: #15100d;
+  --accent-wash: rgba(235, 213, 190, 0.12);
+  --accent-glow: rgba(211, 151, 148, 0.34);
+}
+[data-accent="nabz"] {
+  --accent: var(--nama-teal); --accent-2: #7fd1a8;
+  --accent-ink: #f4fbf7;
+  --accent-wash: rgba(25, 160, 109, 0.14);
+  --accent-glow: rgba(25, 160, 109, 0.30);
+}
+[data-accent="antibiome"] {
+  --accent: #7fd1a8; --accent-2: var(--nama-sky);
+  --accent-ink: #04070e;
+  --accent-wash: rgba(127, 209, 168, 0.12);
+  --accent-glow: rgba(127, 209, 168, 0.30);
+}
+[data-accent="antibiotogram"] {
+  --accent: var(--nama-amber); --accent-2: var(--nama-alert);
+  --accent-ink: #15100d;
+  --accent-wash: rgba(217, 162, 74, 0.12);
+  --accent-glow: rgba(217, 162, 74, 0.30);
+}
+
+/* ── 3. CLINICAL REGISTER ──────────────────────────────────────────── */
+/* nabz's light instrument surface. Same structure, inverted ground.
+   Light is nabz's mandatory default — a doctor must never meet neon. */
+
+[data-register="clinical"] {
+  --nama-void:      #eef1f2;
+  --nama-deep:      #f6f8f8;
+  --nama-panel:     #ffffff;
+  --nama-raised:    #ffffff;
+  --nama-glass:     rgba(20, 32, 31, 0.035);
+  --nama-ink:       #14201f;
+  --nama-ink-2:     #55635f;
+  --nama-ink-3:     #8a9691;
+  --nama-ink-4:     #b4bdba;
+  --nama-line:      #dfe4e3;
+  --nama-line-soft: #eceeed;
+  --accent:         #0f8055;
+  --accent-2:       #0b6b3f;
+  --accent-ink:     #ffffff;
+  --accent-wash:    #e3f2ea;
+  --accent-glow:    rgba(15, 128, 85, 0.18);
+  --lift-1: 0 1px 2px rgba(20, 32, 31, 0.06);
+  --lift-2: 0 8px 24px -10px rgba(20, 32, 31, 0.14);
+  --lift-3: 0 24px 60px -24px rgba(20, 32, 31, 0.20);
+}
+
+/* ── 4. BASE ───────────────────────────────────────────────────────── */
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--nama-void);
+  color: var(--nama-ink);
+  font-family: var(--nama-sans);
+  font-size: var(--t-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, svg, video, canvas { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* Focus is never removed, only restyled. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--r-1);
+}
+
+/* ── 5. TYPE PRIMITIVES ────────────────────────────────────────────── */
+
+/* The display face carries the family's voice: tight, serif, calm.
+   medNAMA's register, now shared. */
+.nama-display,
+.nama-h1 {
+  font-family: var(--nama-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.96;
+  margin: 0;
+}
+.nama-display { font-size: var(--t-display); }
+.nama-h1      { font-size: var(--t-h1); }
+
+.nama-h2 {
+  font-family: var(--nama-serif);
+  font-weight: 400;
+  font-size: var(--t-h2);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  margin: 0;
+}
+.nama-h3 {
+  font-family: var(--nama-sans);
+  font-weight: 500;
+  font-size: var(--t-h3);
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.nama-lede {
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.6;
+  color: var(--nama-ink-2);
+  max-width: var(--measure);
+  margin: 0;
+}
+
+/* Mono means "this is a precise value" — a legibility property, not
+   decoration. Inherited straight from nabz's dose-safety rule. */
+.nama-mono {
+  font-family: var(--nama-mono);
+  font-size: var(--t-small);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* The family's label style: mono, uppercase, wide, one dot of accent. */
+.nama-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--nama-mono);
+  font-size: var(--t-micro);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nama-ink-3);
+}
+.nama-eyebrow::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: 0 0 auto;
+}
+.nama-eyebrow.is-bare::before { display: none; }
+
+.nama-urdu { font-family: var(--nama-urdu); direction: rtl; line-height: 2.1; }
+
+/* Any LTR token inside an RTL line must be isolated — a reordered dose
+   is a safety bug, not a cosmetic one. (nabz) */
+.nama-ltr { unicode-bidi: isolate; direction: ltr; font-family: var(--nama-mono); }
+
+/* ── 6. CONTROLS ───────────────────────────────────────────────────── */
+
+.nama-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: 12px 22px;
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  background: none;
+  font-size: var(--t-small);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform var(--t-fast) var(--ease),
+              background var(--t-base) var(--ease),
+              border-color var(--t-base) var(--ease),
+              box-shadow var(--t-base) var(--ease);
+}
+.nama-btn:hover  { transform: translateY(-1px); }
+.nama-btn:active { transform: translateY(0) scale(0.99); }
+
+.nama-btn--solid {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+}
+.nama-btn--solid:hover { box-shadow: 0 8px 28px -8px var(--accent-glow); }
+
+.nama-btn--ghost {
+  border-color: var(--nama-line);
+  background: var(--nama-glass);
+  color: var(--nama-ink);
+}
+.nama-btn--ghost:hover { border-color: var(--accent); background: var(--accent-wash); }
+
+.nama-btn--quiet { padding: 10px 4px; color: var(--nama-ink-2); }
+.nama-btn--quiet:hover { color: var(--nama-ink); }
+
+/* Pill is a status, not a button. Never put an action in one. */
+.nama-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 6px 14px;
+  border: 1px solid var(--nama-line);
+  border-radius: var(--r-pill);
+  background: var(--nama-glass);
+  font-family: var(--nama-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--nama-ink-2);
+}
+.nama-pill--accent {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-wash);
+}
+
+/* A live signal. Used sparingly: it means "right now". */
+.nama-live {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: 0 0 auto;
+  animation: nama-pulse 2.4s var(--ease) infinite;
+}
+@keyframes nama-pulse {
+  0%   { box-shadow: 0 0 0 0 var(--accent-glow); }
+  70%  { box-shadow: 0 0 0 9px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.nama-link {
+  color: var(--nama-ink);
+  border-bottom: 1px solid var(--nama-ink-4);
+  padding-bottom: 1px;
+  transition: border-color var(--t-base) var(--ease), color var(--t-base) var(--ease);
+}
+.nama-link:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ── 7. SURFACES ───────────────────────────────────────────────────── */
+
+.nama-card {
+  position: relative;
+  border: 1px solid var(--nama-line);
+  border-radius: var(--r-3);
+  background: var(--nama-panel);
+  box-shadow: var(--lift-2);
+  overflow: hidden;
+}
+
+.nama-panel {
+  border: 1px solid var(--nama-line-soft);
+  border-radius: var(--r-2);
+  background: var(--nama-glass);
+}
+
+/* The glass plate. backdrop-filter where it exists, honest tint where
+   it does not — the layout must never depend on the blur landing. */
+.nama-glass-plate {
+  border: 1px solid var(--nama-line);
+  border-radius: var(--r-3);
+  background: rgba(13, 20, 32, 0.55);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .nama-glass-plate {
+    background: var(--nama-glass);
+    backdrop-filter: blur(18px) saturate(140%);
+  }
+}
+
+.nama-hr { height: 1px; border: 0; background: var(--nama-line); margin: var(--s-7) 0; }
+
+/* Film grain. The one texture the family allows — it stops large flat
+   voids from banding on cheap panels. */
+.nama-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* The hairline grid. Sits behind the hero in every family member. */
+.nama-grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--nama-line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--nama-line-soft) 1px, transparent 1px);
+  background-size: 80px 80px;
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 0%, transparent 78%);
+          mask-image: radial-gradient(120% 90% at 50% 20%, #000 0%, transparent 78%);
+}
+
+/* ── 8. DATA DISPLAY ───────────────────────────────────────────────── */
+
+.nama-stat { display: grid; gap: var(--s-1); }
+.nama-stat__num {
+  font-family: var(--nama-mono);
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--nama-ink);
+}
+.nama-stat__lab {
+  font-family: var(--nama-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nama-ink-3);
+}
+
+/* ── 9. STATE COLOUR DISCIPLINE ────────────────────────────────────── */
+/* Three semantic roles and no more. Every state carries a glyph AND a
+   border, never colour alone — mono printers and colourblind readers
+   must receive the same message. (nabz) */
+
+.nama-state {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  padding: 4px 10px; border: 1px solid; border-radius: var(--r-1);
+  font-family: var(--nama-mono); font-size: 12px;
+}
+.nama-state--ok     { color: var(--nama-teal);  border-color: var(--nama-teal);  background: rgba(25, 160, 109, 0.10); }
+.nama-state--warn   { color: var(--nama-amber); border-color: var(--nama-amber); background: rgba(217, 162, 74, 0.10); }
+.nama-state--danger { color: var(--nama-alert); border-color: var(--nama-alert); background: rgba(224, 113, 106, 0.10); }
+.nama-state--ok::before     { content: "\2713"; }   /* vetted */
+.nama-state--warn::before   { content: "\270E"; }   /* unverified */
+.nama-state--danger::before { content: "\0021"; }   /* danger */
+
+/* ── 10. MOTION PRIMITIVES ─────────────────────────────────────────── */
+
+/* Reveal on scroll. JS adds .is-in; CSS owns the look. */
+.nama-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity var(--t-cine) var(--ease-out),
+              transform var(--t-cine) var(--ease-out);
+}
+.nama-reveal.is-in { opacity: 1; transform: none; }
+.nama-reveal[data-delay="1"] { transition-delay: 80ms; }
+.nama-reveal[data-delay="2"] { transition-delay: 160ms; }
+.nama-reveal[data-delay="3"] { transition-delay: 240ms; }
+.nama-reveal[data-delay="4"] { transition-delay: 320ms; }
+
+/* Word-by-word statement reveal — medNAMA's signature read. */
+.nama-words .w { color: var(--nama-ink-4); transition: color var(--t-slow) var(--ease); }
+.nama-words .w.is-on { color: var(--nama-ink); }
+
+/* ── 11. LAYOUT ────────────────────────────────────────────────────── */
+
+.nama-page    { max-width: var(--page); margin: 0 auto; padding-inline: var(--gutter); }
+.nama-section { padding-block: var(--s-10); }
+.nama-band    { background: var(--nama-deep); }
+
+/* ── 12. REDUCED MOTION ────────────────────────────────────────────── */
+/* Not an afterthought: every animated primitive above has a still
+   resting state here, and that state is the correct one. */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .nama-reveal { opacity: 1; transform: none; }
+  .nama-words .w { color: var(--nama-ink); }
+}
