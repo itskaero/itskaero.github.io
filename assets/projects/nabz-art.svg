@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Nabz: a prescription sheet with English clinical sections and an Urdu column for each medicine, under a pulse trace</title>
+<style>
+.l{fill:none;stroke:#10241B;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.h{fill:none;stroke:#8A8D82;stroke-width:.6}
+.f{fill:#10241B}.p{fill:#F1ECDF}.lime{fill:#C8F05A}.st{fill:#B4502F}
+.t{font:500 11px 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.12em;fill:#4A4F48;text-transform:uppercase}
+.tl{font:400 10px 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.08em;fill:#8A8D82}
+</style>
+<path class="l" stroke-width="1.4" d="M40 70 L80 70 L88 62 L96 70 L106 70 L112 80 L120 28 L128 92 L136 70 L170 70 L170 70 L210 70 L218 62 L226 70 L236 70 L242 80 L250 28 L258 92 L266 70 L300 70 L300 70 L340 70 L348 62 L356 70 L366 70 L372 80 L380 28 L388 92 L396 70 L430 70 L430 70 L470 70 L478 62 L486 70 L496 70 L502 80 L510 28 L518 92 L526 70 L560 70 L560 70 L600 70 L608 62 L616 70 L626 70 L632 80 L640 28 L648 92 L656 70 L690 70 L690 70 L730 70 L738 62 L746 70 L756 70"/>
+<rect class="p" x="110" y="120" width="580" height="430" stroke="#10241B" stroke-width="1.1"/>
+<path class="l" stroke-width="2.2" d="M140 176 H660"/>
+<rect class="lime" x="140" y="148" width="70" height="8"/>
+<rect class="f" x="220" y="149" width="140" height="6" opacity=".5"/>
+<text class="t" x="140" y="212">Complaints</text>
+<path class="h" d="M140 220 H660"/>
+<rect class="f" x="140" y="234" width="215" height="5" opacity=".75"/>
+<text class="t" x="140" y="268">Examination</text>
+<path class="h" d="M140 276 H660"/>
+<rect class="f" x="140" y="290" width="322.1" height="5" opacity=".75"/>
+<text class="t" x="140" y="324">Diagnosis</text>
+<path class="h" d="M140 332 H660"/>
+<rect class="f" x="140" y="346" width="200.4" height="5" opacity=".75"/>
+<text class="t" x="140" y="380">Medications</text>
+<path class="h" d="M140 388 H660"/>
+<rect class="f" x="140" y="400" width="117.3" height="6"/>
+<rect class="f" x="140" y="414" width="156.4" height="4" opacity=".55"/>
+<path class="h" d="M423.2 394 V432"/>
+<path class="l" stroke-width="1.6" d="M660 410 q-7.9 -7 -15.8 -2 q-5.3 8 -10.6 4"/>
+<path class="l" stroke-width="1.6" d="M625.6 410 q-11.5 -7 -22.9 -2 q-7.6 8 -15.3 4"/>
+<circle class="f" cx="606.5" cy="418" r="1.6"/>
+<path class="l" stroke-width="1.6" d="M579.4 410 q-6.9 -7 -13.8 -2 q-4.6 8 -9.2 4"/>
+<circle class="f" cx="567.9" cy="418" r="1.6"/>
+<circle class="lime" cx="423.2" cy="408" r="5" stroke="#10241B"/>
+<rect class="f" x="140" y="444" width="98.4" height="6"/>
+<rect class="f" x="140" y="458" width="131.2" height="4" opacity=".55"/>
+<path class="h" d="M423.2 438 V476"/>
+<path class="l" stroke-width="1.6" d="M660 454 q-8.4 -7 -16.9 -2 q-5.6 8 -11.3 4"/>
+<path class="l" stroke-width="1.6" d="M623.8 454 q-7.5 -7 -14.9 -2 q-5 8 -9.9 4"/>
+<circle class="f" cx="611.4" cy="462" r="1.6"/>
+<path class="l" stroke-width="1.6" d="M591 454 q-6.8 -7 -13.6 -2 q-4.5 8 -9.1 4"/>
+<circle class="f" cx="579.7" cy="462" r="1.6"/>
+<path class="l" stroke-width="1.6" d="M560.3 454 q-10.5 -7 -21 -2 q-7 8 -14 4"/>
+<path class="l" stroke-width="1.6" d="M517.3 454 q-10.2 -7 -20.5 -2 q-6.8 8 -13.7 4"/>
+<circle class="f" cx="500.2" cy="462" r="1.6"/>
+<circle class="lime" cx="423.2" cy="452" r="5" stroke="#10241B"/>
+<rect class="f" x="140" y="488" width="90.5" height="6"/>
+<rect class="f" x="140" y="502" width="120.7" height="4" opacity=".55"/>
+<path class="h" d="M423.2 482 V520"/>
+<path class="l" stroke-width="1.6" d="M660 498 q-10.3 -7 -20.6 -2 q-6.9 8 -13.7 4"/>
+<path class="l" stroke-width="1.6" d="M617.6 498 q-7.6 -7 -15.3 -2 q-5.1 8 -10.2 4"/>
+<circle class="f" cx="604.9" cy="506" r="1.6"/>
+<path class="l" stroke-width="1.6" d="M584.2 498 q-8.9 -7 -17.7 -2 q-5.9 8 -11.8 4"/>
+<circle class="f" cx="569.4" cy="506" r="1.6"/>
+<circle class="lime" cx="423.2" cy="496" r="5" stroke="#10241B"/>
+<text class="tl" x="140" y="582">EN · clinical record</text>
+<text class="tl" x="660" y="582" text-anchor="end">UR · patient instructions</text>
+</svg>

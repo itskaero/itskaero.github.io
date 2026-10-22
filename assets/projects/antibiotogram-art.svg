@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Antibiotogram: a susceptibility matrix with coverage marks, linked down each antibiotic class</title>
+<style>
+.l{fill:none;stroke:#10241B;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.h{fill:none;stroke:#8A8D82;stroke-width:.6}
+.f{fill:#10241B}.p{fill:#F1ECDF}.lime{fill:#C8F05A}.st{fill:#B4502F}
+.t{font:500 11px 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.12em;fill:#4A4F48;text-transform:uppercase}
+.tl{font:400 10px 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.08em;fill:#8A8D82}
+</style>
+<text class="t" x="150" y="64">Coverage · organism × agent</text>
+<path class="h" d="M150 92 V496"/>
+<text class="tl" x="150" y="82" text-anchor="middle">D01</text>
+<path class="h" d="M200 92 V496"/>
+<text class="tl" x="200" y="82" text-anchor="middle">D02</text>
+<path class="h" d="M250 92 V496"/>
+<text class="tl" x="250" y="82" text-anchor="middle">D03</text>
+<path class="h" d="M300 92 V496"/>
+<text class="tl" x="300" y="82" text-anchor="middle">D04</text>
+<path class="h" d="M350 92 V496"/>
+<text class="tl" x="350" y="82" text-anchor="middle">D05</text>
+<path class="h" d="M400 92 V496"/>
+<text class="tl" x="400" y="82" text-anchor="middle">D06</text>
+<path class="h" d="M450 92 V496"/>
+<text class="tl" x="450" y="82" text-anchor="middle">D07</text>
+<path class="h" d="M500 92 V496"/>
+<text class="tl" x="500" y="82" text-anchor="middle">D08</text>
+<path class="h" d="M550 92 V496"/>
+<text class="tl" x="550" y="82" text-anchor="middle">D09</text>
+<path class="h" d="M600 92 V496"/>
+<text class="tl" x="600" y="82" text-anchor="middle">D10</text>
+<path class="h" d="M650 92 V496"/>
+<text class="tl" x="650" y="82" text-anchor="middle">D11</text>
+<path class="h" d="M700 92 V496"/>
+<text class="tl" x="700" y="82" text-anchor="middle">D12</text>
+<rect class="f" x="40" y="107" width="66" height="5" opacity=".7"/>
+<rect class="f" x="40" y="153" width="77" height="5" opacity=".7"/>
+<rect class="f" x="40" y="199" width="58" height="5" opacity=".7"/>
+<rect class="f" x="40" y="245" width="61" height="5" opacity=".7"/>
+<rect class="f" x="40" y="291" width="57" height="5" opacity=".7"/>
+<rect class="f" x="40" y="337" width="78" height="5" opacity=".7"/>
+<rect class="f" x="40" y="383" width="44" height="5" opacity=".7"/>
+<rect class="f" x="40" y="429" width="78" height="5" opacity=".7"/>
+<rect class="f" x="40" y="475" width="68" height="5" opacity=".7"/>
+<path class="l" d="M200 110 L200 156"/>
+<path class="l" d="M200 340 L200 432"/>
+<path class="l" d="M250 340 L250 386"/>
+<path class="l" d="M300 202 L300 248"/>
+<path class="l" d="M300 248 L300 294"/>
+<path class="l" d="M300 294 L300 340"/>
+<path class="l" d="M300 340 L300 386"/>
+<path class="l" d="M450 248 L450 294"/>
+<path class="l" d="M450 294 L450 340"/>
+<path class="l" d="M450 340 L450 386"/>
+<path class="l" d="M450 386 L450 432"/>
+<path class="l" d="M450 432 L450 478"/>
+<path class="l" d="M500 248 L500 340"/>
+<path class="l" d="M550 110 L550 202"/>
+<path class="l" d="M550 202 L550 248"/>
+<path class="l" d="M600 110 L600 156"/>
+<path class="l" d="M600 156 L600 202"/>
+<path class="l" d="M600 202 L600 248"/>
+<path class="l" d="M600 248 L600 340"/>
+<path class="l" d="M650 248 L650 340"/>
+<path class="l" d="M700 110 L700 156"/>
+<path class="l" d="M700 156 L700 248"/>
+<path class="l" d="M700 248 L700 294"/>
+<path class="l" d="M136 64 H264"/>
+<path class="l" d="M136 64 v6 M264 64 v6"/>
+<path class="l" d="M286 64 H414"/>
+<path class="l" d="M286 64 v6 M414 64 v6"/>
+<path class="l" d="M436 64 H514"/>
+<path class="l" d="M436 64 v6 M514 64 v6"/>
+<path class="l" d="M536 64 H614"/>
+<path class="l" d="M536 64 v6 M614 64 v6"/>
+<path class="l" d="M636 64 H714"/>
+<path class="l" d="M636 64 v6 M714 64 v6"/>
+<circle class="p" cx="150" cy="110" r="5" stroke="#10241B"/>
+<circle class="f" cx="200" cy="110" r="8.2"/>
+<path class="h" d="M246 110 h8"/>
+<circle class="p" cx="300" cy="110" r="5" stroke="#10241B"/>
+<path class="h" d="M346 110 h8"/>
+<path class="h" d="M396 110 h8"/>
+<circle class="f" cx="450" cy="110" r="7.4"/>
+<path class="h" d="M496 110 h8"/>
+<circle class="f" cx="550" cy="110" r="8.6"/>
+<circle class="f" cx="600" cy="110" r="8.1"/>
+<circle class="p" cx="650" cy="110" r="5" stroke="#10241B"/>
+<circle class="f" cx="700" cy="110" r="7.8"/>
+<circle class="p" cx="150" cy="156" r="5" stroke="#10241B"/>
+<circle class="f" cx="200" cy="156" r="8.1"/>
+<circle class="p" cx="250" cy="156" r="5" stroke="#10241B"/>
+<path class="h" d="M296 156 h8"/>
+<circle class="lime" cx="350" cy="156" r="11" stroke="#10241B"/>
+<circle class="f" cx="400" cy="156" r="7.7"/>
+<path class="h" d="M446 156 h8"/>
+<path class="h" d="M496 156 h8"/>
+<path class="h" d="M546 156 h8"/>
+<circle class="lime" cx="600" cy="156" r="11" stroke="#10241B"/>
+<path class="h" d="M646 156 h8"/>
+<circle class="f" cx="700" cy="156" r="7.8"/>
+<path class="h" d="M146 202 h8"/>
+<circle class="p" cx="200" cy="202" r="5" stroke="#10241B"/>
+<circle class="p" cx="250" cy="202" r="5" stroke="#10241B"/>
+<circle class="lime" cx="300" cy="202" r="11" stroke="#10241B"/>
+<path class="h" d="M346 202 h8"/>
+<path class="h" d="M396 202 h8"/>
+<path class="h" d="M446 202 h8"/>
+<path class="h" d="M496 202 h8"/>
+<circle class="f" cx="550" cy="202" r="8"/>
+<circle class="f" cx="600" cy="202" r="8.9"/>
+<circle class="p" cx="650" cy="202" r="5" stroke="#10241B"/>
+<path class="h" d="M696 202 h8"/>
+<circle class="p" cx="150" cy="248" r="5" stroke="#10241B"/>
+<circle class="p" cx="200" cy="248" r="5" stroke="#10241B"/>
+<circle class="p" cx="250" cy="248" r="5" stroke="#10241B"/>
+<circle class="f" cx="300" cy="248" r="8.8"/>
+<path class="h" d="M346 248 h8"/>
+<circle class="p" cx="400" cy="248" r="5" stroke="#10241B"/>
+<circle class="lime" cx="450" cy="248" r="11" stroke="#10241B"/>
+<circle class="f" cx="500" cy="248" r="8.4"/>
+<circle class="lime" cx="550" cy="248" r="11" stroke="#10241B"/>
+<circle class="f" cx="600" cy="248" r="7.7"/>
+<circle class="lime" cx="650" cy="248" r="11" stroke="#10241B"/>
+<circle class="f" cx="700" cy="248" r="8.4"/>
+<path class="h" d="M146 294 h8"/>
+<path class="h" d="M196 294 h8"/>
+<path class="h" d="M246 294 h8"/>
+<circle class="f" cx="300" cy="294" r="8.5"/>
+<circle class="f" cx="350" cy="294" r="7.9"/>
+<circle class="p" cx="400" cy="294" r="5" stroke="#10241B"/>
+<circle class="lime" cx="450" cy="294" r="11" stroke="#10241B"/>
+<circle class="p" cx="500" cy="294" r="5" stroke="#10241B"/>
+<path class="h" d="M546 294 h8"/>
+<path class="h" d="M596 294 h8"/>
+<circle class="p" cx="650" cy="294" r="5" stroke="#10241B"/>
+<circle class="lime" cx="700" cy="294" r="11" stroke="#10241B"/>
+<circle class="f" cx="150" cy="340" r="8.3"/>
+<circle class="lime" cx="200" cy="340" r="11" stroke="#10241B"/>
+<circle class="f" cx="250" cy="340" r="8.6"/>
+<circle class="f" cx="300" cy="340" r="8.1"/>
+<circle class="p" cx="350" cy="340" r="5" stroke="#10241B"/>
+<path class="h" d="M396 340 h8"/>
+<circle class="lime" cx="450" cy="340" r="11" stroke="#10241B"/>
+<circle class="f" cx="500" cy="340" r="8.4"/>
+<path class="h" d="M546 340 h8"/>
+<circle class="f" cx="600" cy="340" r="7.9"/>
+<circle class="lime" cx="650" cy="340" r="11" stroke="#10241B"/>
+<path class="h" d="M696 340 h8"/>
+<path class="h" d="M146 386 h8"/>
+<path class="h" d="M196 386 h8"/>
+<circle class="f" cx="250" cy="386" r="8.1"/>
+<circle class="f" cx="300" cy="386" r="7.8"/>
+<path class="h" d="M346 386 h8"/>
+<circle class="lime" cx="400" cy="386" r="11" stroke="#10241B"/>
+<circle class="lime" cx="450" cy="386" r="11" stroke="#10241B"/>
+<path class="h" d="M496 386 h8"/>
+<circle class="lime" cx="550" cy="386" r="11" stroke="#10241B"/>
+<path class="h" d="M596 386 h8"/>
+<path class="h" d="M646 386 h8"/>
+<circle class="p" cx="700" cy="386" r="5" stroke="#10241B"/>
+<circle class="p" cx="150" cy="432" r="5" stroke="#10241B"/>
+<circle class="f" cx="200" cy="432" r="8.8"/>
+<path class="h" d="M246 432 h8"/>
+<circle class="p" cx="300" cy="432" r="5" stroke="#10241B"/>
+<circle class="p" cx="350" cy="432" r="5" stroke="#10241B"/>
+<circle class="p" cx="400" cy="432" r="5" stroke="#10241B"/>
+<circle class="lime" cx="450" cy="432" r="11" stroke="#10241B"/>
+<circle class="p" cx="500" cy="432" r="5" stroke="#10241B"/>
+<circle class="p" cx="550" cy="432" r="5" stroke="#10241B"/>
+<path class="h" d="M596 432 h8"/>
+<path class="h" d="M646 432 h8"/>
+<path class="h" d="M696 432 h8"/>
+<circle class="p" cx="150" cy="478" r="5" stroke="#10241B"/>
+<circle class="p" cx="200" cy="478" r="5" stroke="#10241B"/>
+<circle class="p" cx="250" cy="478" r="5" stroke="#10241B"/>
+<path class="h" d="M296 478 h8"/>
+<circle class="f" cx="350" cy="478" r="7.5"/>
+<path class="h" d="M396 478 h8"/>
+<circle class="f" cx="450" cy="478" r="8.5"/>
+<circle class="p" cx="500" cy="478" r="5" stroke="#10241B"/>
+<circle class="p" cx="550" cy="478" r="5" stroke="#10241B"/>
+<path class="h" d="M596 478 h8"/>
+<path class="h" d="M646 478 h8"/>
+<circle class="p" cx="700" cy="478" r="5" stroke="#10241B"/>
+<text class="tl" x="150" y="560">● preferred   ● active   ○ partial   – none</text>
+</svg>
