@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>MeritNama: candidates ranked by merit, flowing through their preferences into a grid of seats</title>
+<style>
+.l{fill:none;stroke:#10241B;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.h{fill:none;stroke:#8A8D82;stroke-width:.6}
+.f{fill:#10241B}.p{fill:#F1ECDF}.lime{fill:#C8F05A}.st{fill:#B4502F}
+.t{font:500 11px 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.12em;fill:#4A4F48;text-transform:uppercase}
+.tl{font:400 10px 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.08em;fill:#8A8D82}
+</style>
+<rect class="p" x="60" y="85" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="85" width="149.7" height="14"/>
+<text class="tl" x="52" y="96" text-anchor="end">01</text>
+<rect class="p" x="60" y="112" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="112" width="132.3" height="14"/>
+<text class="tl" x="52" y="123" text-anchor="end">02</text>
+<rect class="p" x="60" y="139" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="139" width="123.4" height="14"/>
+<text class="tl" x="52" y="150" text-anchor="end">03</text>
+<rect class="p" x="60" y="166" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="166" width="114.5" height="14"/>
+<text class="tl" x="52" y="177" text-anchor="end">04</text>
+<rect class="p" x="60" y="193" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="193" width="110.4" height="14"/>
+<text class="tl" x="52" y="204" text-anchor="end">05</text>
+<rect class="p" x="60" y="220" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="220" width="109.7" height="14"/>
+<text class="tl" x="52" y="231" text-anchor="end">06</text>
+<rect class="p" x="60" y="247" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="247" width="100" height="14"/>
+<text class="tl" x="52" y="258" text-anchor="end">07</text>
+<rect class="p" x="60" y="274" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="274" width="94.5" height="14"/>
+<text class="tl" x="52" y="285" text-anchor="end">08</text>
+<rect class="p" x="60" y="301" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="301" width="94.4" height="14"/>
+<text class="tl" x="52" y="312" text-anchor="end">09</text>
+<rect class="p" x="60" y="328" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="328" width="93.2" height="14"/>
+<text class="tl" x="52" y="339" text-anchor="end">10</text>
+<rect class="p" x="60" y="355" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="355" width="91.4" height="14"/>
+<text class="tl" x="52" y="366" text-anchor="end">11</text>
+<rect class="p" x="60" y="382" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="382" width="89.6" height="14"/>
+<text class="tl" x="52" y="393" text-anchor="end">12</text>
+<rect class="p" x="60" y="409" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="409" width="89" height="14"/>
+<text class="tl" x="52" y="420" text-anchor="end">13</text>
+<rect class="p" x="60" y="436" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="436" width="89" height="14"/>
+<text class="tl" x="52" y="447" text-anchor="end">14</text>
+<rect class="p" x="60" y="463" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="463" width="79.7" height="14"/>
+<text class="tl" x="52" y="474" text-anchor="end">15</text>
+<rect class="p" x="60" y="490" width="150" height="14" stroke="#8A8D82" stroke-width=".6"/>
+<rect class="f" x="60" y="490" width="76.4" height="14"/>
+<text class="tl" x="52" y="501" text-anchor="end">16</text>
+<text class="t" x="60" y="64">Candidates · by merit</text>
+<text class="t" x="520" y="64">Seats · specialty × hospital</text>
+<path class="l" stroke-width="1.3" d="M218 92 C360 92 400 105 518 105"/>
+<path class="h" stroke-width="0.6" d="M218 92 C360 92 400 313 544 313" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 92 C360 92 400 183 674 183" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 119 C360 119 400 261 518 261"/>
+<path class="h" stroke-width="0.6" d="M218 119 C360 119 400 261 570 261" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 119 C360 119 400 183 518 183" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 146 C360 146 400 313 674 313"/>
+<path class="h" stroke-width="0.6" d="M218 146 C360 146 400 261 544 261" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 146 C360 146 400 313 648 313" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 173 C360 173 400 105 570 105"/>
+<path class="h" stroke-width="0.6" d="M218 173 C360 173 400 235 648 235" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 173 C360 173 400 235 596 235" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 200 C360 200 400 235 674 235"/>
+<path class="h" stroke-width="0.6" d="M218 200 C360 200 400 183 622 183" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 200 C360 200 400 313 700 313" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 227 C360 227 400 157 674 157"/>
+<path class="h" stroke-width="0.6" d="M218 227 C360 227 400 157 570 157" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 227 C360 227 400 235 544 235" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 254 C360 254 400 183 570 183"/>
+<path class="h" stroke-width="0.6" d="M218 254 C360 254 400 105 596 105" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 254 C360 254 400 105 544 105" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 281 C360 281 400 287 570 287"/>
+<path class="h" stroke-width="0.6" d="M218 281 C360 281 400 157 700 157" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 281 C360 281 400 261 570 261" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 308 C360 308 400 287 700 287"/>
+<path class="h" stroke-width="0.6" d="M218 308 C360 308 400 157 570 157" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 308 C360 308 400 105 622 105" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 335 C360 335 400 131 648 131"/>
+<path class="h" stroke-width="0.6" d="M218 335 C360 335 400 183 518 183" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 335 C360 335 400 235 570 235" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 362 C360 362 400 209 674 209"/>
+<path class="h" stroke-width="0.6" d="M218 362 C360 362 400 287 544 287" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 362 C360 362 400 235 544 235" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 389 C360 389 400 131 544 131"/>
+<path class="h" stroke-width="0.6" d="M218 389 C360 389 400 183 570 183" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 389 C360 389 400 287 622 287" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 416 C360 416 400 235 544 235"/>
+<path class="h" stroke-width="0.6" d="M218 416 C360 416 400 287 622 287" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 416 C360 416 400 157 674 157" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 443 C360 443 400 235 622 235"/>
+<path class="h" stroke-width="0.6" d="M218 443 C360 443 400 313 544 313" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 443 C360 443 400 261 674 261" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 470 C360 470 400 261 700 261"/>
+<path class="h" stroke-width="0.6" d="M218 470 C360 470 400 287 518 287" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 470 C360 470 400 313 700 313" stroke-dasharray="2 4"/>
+<path class="l" stroke-width="1.3" d="M218 497 C360 497 400 183 544 183"/>
+<path class="h" stroke-width="0.6" d="M218 497 C360 497 400 261 570 261" stroke-dasharray="2 4"/>
+<path class="h" stroke-width="0.6" d="M218 497 C360 497 400 287 518 287" stroke-dasharray="2 4"/>
+<rect class="lime" x="523" y="95" width="20" height="20" stroke="#10241B" stroke-width="1"/>
+<rect class="p" x="549" y="95" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="575" y="95" width="20" height="20"/>
+<rect class="p" x="601" y="95" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="627" y="95" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="653" y="95" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="705" y="95" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="523" y="121" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="549" y="121" width="20" height="20"/>
+<rect class="p" x="575" y="121" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="601" y="121" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="627" y="121" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="653" y="121" width="20" height="20"/>
+<rect class="p" x="575" y="147" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="601" y="147" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="627" y="147" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="679" y="147" width="20" height="20"/>
+<rect class="p" x="705" y="147" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="523" y="173" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="549" y="173" width="20" height="20"/>
+<rect class="f" x="575" y="173" width="20" height="20"/>
+<rect class="p" x="601" y="173" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="627" y="173" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="653" y="173" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="679" y="173" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="705" y="173" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="523" y="199" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="549" y="199" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="653" y="199" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="679" y="199" width="20" height="20"/>
+<rect class="p" x="705" y="199" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="523" y="225" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="549" y="225" width="20" height="20"/>
+<rect class="p" x="575" y="225" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="601" y="225" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="627" y="225" width="20" height="20"/>
+<rect class="p" x="653" y="225" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="679" y="225" width="20" height="20"/>
+<rect class="p" x="705" y="225" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="lime" x="523" y="251" width="20" height="20" stroke="#10241B" stroke-width="1"/>
+<rect class="p" x="549" y="251" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="575" y="251" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="601" y="251" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="627" y="251" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="653" y="251" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="679" y="251" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="705" y="251" width="20" height="20"/>
+<rect class="p" x="523" y="277" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="549" y="277" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="575" y="277" width="20" height="20"/>
+<rect class="p" x="601" y="277" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="627" y="277" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="653" y="277" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="679" y="277" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="f" x="705" y="277" width="20" height="20"/>
+<rect class="p" x="523" y="303" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="549" y="303" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="575" y="303" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="627" y="303" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="p" x="653" y="303" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<rect class="lime" x="679" y="303" width="20" height="20" stroke="#10241B" stroke-width="1"/>
+<rect class="p" x="705" y="303" width="20" height="20" stroke="#8A8D82" stroke-width=".8"/>
+<path class="l" d="M60 530 H730"/>
+<path class="l" d="M60 526 v8"/>
+<text class="tl" x="60" y="552" text-anchor="middle">R1</text>
+<path class="l" d="M155.7 526 v8"/>
+<text class="tl" x="155.7" y="552" text-anchor="middle">R2</text>
+<path class="l" d="M251.4 526 v8"/>
+<text class="tl" x="251.4" y="552" text-anchor="middle">R3</text>
+<path class="l" d="M347.1 526 v8"/>
+<text class="tl" x="347.1" y="552" text-anchor="middle">R4</text>
+<path class="l" d="M442.9 526 v8"/>
+<text class="tl" x="442.9" y="552" text-anchor="middle">R5</text>
+<path class="l" d="M538.6 526 v8"/>
+<text class="tl" x="538.6" y="552" text-anchor="middle">R6</text>
+<path class="l" d="M634.3 526 v8"/>
+<text class="tl" x="634.3" y="552" text-anchor="middle">R7</text>
+<path class="l" d="M730 526 v8"/>
+<text class="tl" x="730" y="552" text-anchor="middle">R8</text>
+<text class="tl" x="730" y="578" text-anchor="end">Schematic · allocation by merit and preference</text>
+</svg>

@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img">
+<title>Nisbat: a day arc with prayer times over a household roofline, with a haze band for air quality</title>
+<style>
+.l{fill:none;stroke:#10241B;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.h{fill:none;stroke:#8A8D82;stroke-width:.6}
+.f{fill:#10241B}.p{fill:#F1ECDF}.lime{fill:#C8F05A}.st{fill:#B4502F}
+.t{font:500 11px 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.12em;fill:#4A4F48;text-transform:uppercase}
+.tl{font:400 10px 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.08em;fill:#8A8D82}
+</style>
+<path class="h" d="M60 430 H740"/>
+<path class="l" d="M100 430 L116 430"/>
+<path class="l" d="M110.2 352.4 L117.9 354.4"/>
+<path class="l" d="M140.2 280 L147.1 284"/>
+<path class="l" d="M187.9 217.9 L199.2 229.2"/>
+<path class="l" d="M250 170.2 L254 177.1"/>
+<path class="l" d="M322.4 140.2 L324.4 147.9"/>
+<path class="l" d="M400 130 L400 146"/>
+<path class="l" d="M477.6 140.2 L475.6 147.9"/>
+<path class="l" d="M550 170.2 L546 177.1"/>
+<path class="l" d="M612.1 217.9 L600.8 229.2"/>
+<path class="l" d="M659.8 280 L652.9 284"/>
+<path class="l" d="M689.8 352.4 L682.1 354.4"/>
+<path class="l" d="M700 430 L684 430"/>
+<path class="l" d="M100 430 A300 300 0 0 1 700 430"/>
+<path class="h" stroke-dasharray="2 5" d="M140 430 A260 260 0 0 1 660 430"/>
+<circle class="p" cx="142.1" cy="397.4" r="5" stroke="#10241B"/>
+<circle class="p" cx="383.7" cy="170.5" r="5" stroke="#10241B"/>
+<circle class="lime" cx="525.3" cy="202.2" r="7" stroke="#10241B"/>
+<circle class="p" cx="658.8" cy="405.5" r="5" stroke="#10241B"/>
+<circle class="p" cx="660" cy="425.9" r="5" stroke="#10241B"/>
+<circle class="f" cx="492.7" cy="144.7" r="14"/>
+<path class="l" d="M512.7 144.7 L519.7 144.7"/>
+<path class="l" d="M510 154.7 L516.1 158.2"/>
+<path class="l" d="M502.7 162 L506.2 168.1"/>
+<path class="l" d="M492.7 164.7 L492.7 171.7"/>
+<path class="l" d="M482.7 162 L479.2 168.1"/>
+<path class="l" d="M475.4 154.7 L469.3 158.2"/>
+<path class="l" d="M472.7 144.7 L465.7 144.7"/>
+<path class="l" d="M475.4 134.7 L469.3 131.2"/>
+<path class="l" d="M482.7 127.4 L479.2 121.3"/>
+<path class="l" d="M492.7 124.7 L492.7 117.7"/>
+<path class="l" d="M502.7 127.4 L506.2 121.3"/>
+<path class="l" d="M510 134.7 L516.1 131.2"/>
+<path class="p" stroke="#10241B" stroke-width="1.2" d="M300 430 V320 H500 V430"/>
+<path class="l" d="M290 320 H510"/>
+<path class="l" d="M294 320 v-8 h10 v8"/>
+<path class="l" d="M315 320 v-8 h10 v8"/>
+<path class="l" d="M336 320 v-8 h10 v8"/>
+<path class="l" d="M357 320 v-8 h10 v8"/>
+<path class="l" d="M378 320 v-8 h10 v8"/>
+<path class="l" d="M399 320 v-8 h10 v8"/>
+<path class="l" d="M420 320 v-8 h10 v8"/>
+<path class="l" d="M441 320 v-8 h10 v8"/>
+<path class="l" d="M462 320 v-8 h10 v8"/>
+<path class="l" d="M483 320 v-8 h10 v8"/>
+<path class="l" d="M504 320 v-8 h10 v8"/>
+<path class="l" d="M450 312 v-26 h28 v26 M448 286 q14 -26 32 0"/>
+<rect class="f" x="328" y="350" width="74" height="44"/>
+<rect class="lime" x="335" y="357" width="60" height="30"/>
+<path class="l" d="M365 394 v18" />
+<path class="l" d="M430 430 V376 Q446 354 462 376 V430"/>
+<path class="h" d="M60 490 l24 -24"/>
+<path class="h" d="M77 490 l24 -24"/>
+<path class="h" d="M94 490 l24 -24"/>
+<path class="h" d="M111 490 l24 -24"/>
+<path class="h" d="M128 490 l24 -24"/>
+<path class="h" d="M145 490 l24 -24"/>
+<path class="h" d="M162 490 l24 -24"/>
+<path class="h" d="M179 490 l24 -24"/>
+<path class="h" d="M196 490 l24 -24"/>
+<path class="h" d="M213 490 l24 -24"/>
+<path class="h" d="M230 490 l24 -24"/>
+<path class="h" d="M247 490 l24 -24"/>
+<path class="h" d="M264 490 l24 -24"/>
+<path class="h" d="M281 490 l24 -24"/>
+<path class="h" d="M298 490 l24 -24"/>
+<path class="h" d="M315 490 l24 -24"/>
+<path class="h" d="M332 490 l24 -24"/>
+<path class="h" d="M349 490 l24 -24"/>
+<path class="h" d="M366 490 l24 -24"/>
+<path class="h" d="M383 490 l24 -24"/>
+<path class="h" d="M400 490 l24 -24"/>
+<path class="h" d="M417 490 l24 -24"/>
+<path class="h" d="M434 490 l24 -24"/>
+<path class="h" d="M451 490 l24 -24"/>
+<path class="h" d="M468 490 l24 -24"/>
+<path class="h" d="M485 490 l24 -24"/>
+<path class="h" d="M502 490 l24 -24"/>
+<path class="h" d="M519 490 l24 -24"/>
+<path class="h" d="M536 490 l24 -24"/>
+<path class="h" d="M553 490 l24 -24"/>
+<path class="h" d="M570 490 l24 -24"/>
+<path class="h" d="M587 490 l24 -24"/>
+<path class="h" d="M604 490 l24 -24"/>
+<path class="h" d="M621 490 l24 -24"/>
+<path class="h" d="M638 490 l24 -24"/>
+<path class="h" d="M655 490 l24 -24"/>
+<path class="h" d="M672 490 l24 -24"/>
+<path class="h" d="M689 490 l24 -24"/>
+<path class="h" d="M706 490 l24 -24"/>
+<path class="h" d="M723 490 l24 -24"/>
+<path class="h" d="M60 466 H740 M60 490 H740"/>
+<text class="tl" x="60" y="522">AQI band</text>
+<text class="tl" x="740" y="522" text-anchor="end">Fajr → Isha</text>
+<text class="t" x="60" y="70">One household · one day</text>
+</svg>

@@ -1,279 +1,125 @@
 /* =====================================================================
-   itskaero.github.io
+   KAERO · The Systems Atlas
    ---------------------------------------------------------------------
-   1. Liquid card carousel  — spring position, velocity-driven stretch
-                              and directional blur, depth by distance
-   2. Accent sync           — the active card re-tints the whole page
-   3. Page motion           — scroll reveals, word statement, nav state
+   1. Chrome        chapter tracking, bar surface, progress, mobile menu
+   2. Reveals       one IntersectionObserver for every entrance
+   3. Filters       project plates by field
+   4. Method        the six-step cycle
+   5. Process       manifesto diagram drawn by scroll position
+   6. Parallax      hero layers, a few pixels at most
+   No libraries. Every part degrades to a finished, static page.
    ===================================================================== */
 
 (function () {
   'use strict';
 
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var motionOK = window.matchMedia('(prefers-reduced-motion: no-preference)');
   var clamp = function (v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; };
+  var $ = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
-  /* ═══ 1. LIQUID CAROUSEL ═══════════════════════════════════════════ */
+  /* ═══ 1. CHROME ════════════════════════════════════════════════════ */
 
-  (function carousel() {
-    var vp = document.getElementById('lq');
-    var track = document.getElementById('lq-track');
-    if (!vp || !track) return;
+  var bar = $('#bar');
+  var rail = $('#chapters');
+  var progress = $('#progress');
+  var nowNum = $('#now-num');
+  var nowName = $('#now-name');
+  var menuBtn = $('#menu-btn');
+  var chapters = $$('main > .ch');
+  var railLinks = $$('#chapters a');
+  // anything with its own surface colour, in document order
+  var surfaces = $$('main > .ch, .plate--dark, .foot');
 
-    var cards = Array.prototype.slice.call(track.children);
-    if (!cards.length) return;
+  function surfaceOf(el) {
+    if (el.classList.contains('ch--forest') || el.classList.contains('plate--dark') || el.classList.contains('foot')) return 'forest';
+    if (el.classList.contains('ch--charcoal')) return 'charcoal';
+    return 'paper';
+  }
 
-    var rail = document.getElementById('lq-rail');
-    var prevBtn = document.getElementById('lq-prev');
-    var nextBtn = document.getElementById('lq-next');
-    var counter = document.getElementById('lq-cur');
-
-    var index = 0;        // active card
-    var pos = 0;          // rendered track offset
-    var goal = 0;         // where the spring is pulling to
-    var vel = 0;          // px moved last frame — drives the liquid look
-    var raf = null;
-    var centers = [];     // offset that centres card i
-    var metrics = [];     // cached {left, w} per card
-    var half = 0;         // cached viewport midpoint
-
-    /* ── measurement ───────────────────────────────────────────────────
-       Geometry is read ONCE here, never inside the frame. Reading
-       offsetLeft after writing the track's transform would force a
-       synchronous layout on every card on every frame.              */
-
-    function measure() {
-      half = vp.clientWidth / 2;
-      metrics = cards.map(function (el) {
-        return { left: el.offsetLeft, w: el.offsetWidth || 1 };
-      });
-      centers = metrics.map(function (m) { return half - (m.left + m.w / 2); });
-      goal = centers[index];
-      if (!dragging) kick();
+  // the innermost surface under a given viewport y (dark plates sit inside paper chapters)
+  function surfaceAt(y) {
+    var hit = null;
+    for (var i = 0; i < surfaces.length; i++) {
+      var r = surfaces[i].getBoundingClientRect();
+      if (r.top <= y && r.bottom > y && !surfaces[i].hidden) hit = surfaces[i];
     }
+    return hit ? surfaceOf(hit) : 'paper';
+  }
 
-    function nearest(x) {
-      var best = 0, bestD = Infinity;
-      for (var i = 0; i < centers.length; i++) {
-        var d = Math.abs(centers[i] - x);
-        if (d < bestD) { bestD = d; best = i; }
-      }
-      return best;
-    }
-
-    /* ── the frame ─────────────────────────────────────────────────────
-       Depth lives on .lq-card, distortion on .lq-card__inner, so the
-       two transforms never overwrite each other.                      */
-
-    function render() {
-      track.style.transform = 'translate3d(' + pos.toFixed(2) + 'px,0,0)';
-
-      var speed = Math.min(Math.abs(vel), 90);
-
-      // liquid: stretch along travel, squash across it, lean into the turn
-      var stretch = reduce ? 0 : Math.min(speed * 0.0024, 0.13);
-      var lean = reduce ? 0 : clamp(-vel * 0.05, -5, 5);
-      var blur = reduce ? 0 : Math.min(speed * 0.16, 9);
-
-      for (var i = 0; i < cards.length; i++) {
-        var el = cards[i];
-        var m = metrics[i];
-        if (!m) continue;
-        var d = (m.left + m.w / 2 + pos - half) / m.w;   // distance in card-widths
-        var ad = Math.abs(d);
-
-        // Far cards cost blur passes for nothing, and the viewport mask
-        // hides them anyway.
-        if (ad > 2.9) {
-          if (el.style.visibility !== 'hidden') el.style.visibility = 'hidden';
-          continue;
-        }
-        if (el.style.visibility) el.style.visibility = '';
-
-        var adc = Math.min(ad, 2);
-        el.style.transform =
-          'translateZ(' + (-adc * 70).toFixed(1) + 'px) ' +
-          'rotateY(' + (clamp(-d, -2.4, 2.4) * 8.5).toFixed(2) + 'deg) ' +
-          'scale(' + (1 - adc * 0.11).toFixed(4) + ')';
-        el.style.opacity = (1 - adc * 0.34).toFixed(3);
-        el.style.zIndex = String(100 - Math.round(adc * 10));
-
-        var inner = el.firstElementChild;
-        if (!inner) continue;
-        inner.style.transform =
-          'scaleX(' + (1 + stretch).toFixed(4) + ') ' +
-          'scaleY(' + (1 - stretch * 0.7).toFixed(4) + ') ' +
-          'skewY(' + lean.toFixed(2) + 'deg)';
-        inner.style.filter = blur > 0.3 ? 'blur(' + blur.toFixed(2) + 'px)' : '';
-      }
-    }
-
-    function loop() {
-      var prev = pos;
-      pos += (goal - pos) * 0.14;
-      vel = pos - prev;
-
-      if (!dragging && Math.abs(goal - pos) < 0.08) {
-        pos = goal; vel = 0; render(); raf = null; return;   // settled: sleep
-      }
-      render();
-      raf = requestAnimationFrame(loop);
-    }
-
-    function kick() { if (!raf) raf = requestAnimationFrame(loop); }
-
-    /* ── active state ──────────────────────────────────────────────── */
-
-    function setIndex(i) {
-      index = clamp(i, 0, cards.length - 1);
-      goal = centers[index];
-
-      cards.forEach(function (el, n) {
-        var on = n === index;
-        el.classList.toggle('is-active', on);
-        // Keep invisible neighbour links out of reach of both the
-        // pointer and the tab order.
-        el.querySelectorAll('.lq-card__links a').forEach(function (a) {
-          a.tabIndex = on ? 0 : -1;
-          a.style.pointerEvents = on ? '' : 'none';
-        });
-      });
-
-      // the page takes on the active member's accent
-      var accent = cards[index].getAttribute('data-accent');
-      if (accent) document.body.setAttribute('data-accent', accent);
-
-      if (counter) counter.textContent = String(index + 1).padStart(2, '0');
-      if (prevBtn) prevBtn.disabled = index === 0;
-      if (nextBtn) nextBtn.disabled = index === cards.length - 1;
-      if (rail) {
-        Array.prototype.forEach.call(rail.children, function (b, n) {
-          b.setAttribute('aria-current', n === index ? 'true' : 'false');
-        });
-      }
-      kick();
-    }
-
-    function go(i) { setIndex(i); }
-
-    /* ── drag ──────────────────────────────────────────────────────────
-       The track follows the finger exactly; velocity comes from the
-       pointer, not the spring, so the smear matches the gesture.      */
-
-    var dragging = false, startX = 0, startPos = 0, lastX = 0, flick = 0, moved = 0;
-
-    vp.addEventListener('pointerdown', function (e) {
-      if (e.pointerType === 'mouse' && e.button !== 0) return;
-      dragging = true; moved = 0; flick = 0;
-      startX = lastX = e.clientX;
-      startPos = pos;
-      vp.classList.add('is-dragging');
-      try { vp.setPointerCapture(e.pointerId); } catch (err) { /* no capture: fine */ }
+  var current = -1;
+  function setChapter(i) {
+    if (i === current || i < 0) return;
+    current = i;
+    var ch = chapters[i];
+    if (nowNum) nowNum.textContent = ch.getAttribute('data-chapter');
+    if (nowName) nowName.textContent = ch.getAttribute('data-name');
+    railLinks.forEach(function (a, n) {
+      if (n === i) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
     });
+  }
 
-    vp.addEventListener('pointermove', function (e) {
-      if (!dragging) return;
-      var dx = e.clientX - startX;
-      moved = Math.max(moved, Math.abs(dx));
-      flick = e.clientX - lastX;
-      lastX = e.clientX;
+  var queued = false;
+  function frame() {
+    queued = false;
+    var vh = window.innerHeight;
+    var y = window.scrollY || window.pageYOffset || 0;
+    var max = document.documentElement.scrollHeight - vh;
+    if (progress) progress.style.transform = 'scaleX(' + (max > 0 ? clamp(y / max, 0, 1) : 0).toFixed(4) + ')';
 
-      var prev = pos;
-      // Rubber-band past the ends instead of stopping dead.
-      var raw = startPos + dx;
-      var lo = centers[centers.length - 1], hi = centers[0];
-      if (raw > hi) raw = hi + (raw - hi) * 0.35;
-      if (raw < lo) raw = lo + (raw - lo) * 0.35;
-      pos = raw;
-      vel = pos - prev;
-      render();
-    });
-
-    function endDrag() {
-      if (!dragging) return;
-      dragging = false;
-      vp.classList.remove('is-dragging');
-      // a flick carries past the nearest card
-      go(nearest(pos + flick * 6));
+    var probe = vh * 0.4;
+    var idx = 0;
+    for (var i = 0; i < chapters.length; i++) {
+      if (chapters[i].getBoundingClientRect().top <= probe) idx = i;
     }
-    vp.addEventListener('pointerup', endDrag);
-    vp.addEventListener('pointercancel', endDrag);
+    setChapter(idx);
 
-    // A drag that ends over a link must not count as a click on it.
-    vp.addEventListener('click', function (e) {
-      if (moved > 8) { e.preventDefault(); e.stopPropagation(); moved = 0; return; }
-      var card = e.target.closest ? e.target.closest('.lq-card') : null;
-      if (!card) return;
-      var i = cards.indexOf(card);
-      if (i > -1 && i !== index) { e.preventDefault(); go(i); }
-    }, true);
+    var barH = bar ? bar.offsetHeight : 56;
+    if (bar) bar.setAttribute('data-surface', surfaceAt(barH + 1));
+    if (rail && !rail.classList.contains('is-open')) rail.setAttribute('data-surface', surfaceAt(vh / 2));
 
-    /* ── wheel, keys, focus ────────────────────────────────────────── */
+    processFrame(vh);
+    parallaxFrame(y, vh);
+  }
+  function request() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
+  addEventListener('scroll', request, { passive: true });
+  addEventListener('resize', request);
 
-    var wheelLock = 0;
-    vp.addEventListener('wheel', function (e) {
-      // Only take over for sideways intent; the page keeps vertical scroll.
-      var dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
-      if (!dx) return;
-      e.preventDefault();
-      if (Date.now() < wheelLock) return;
-      wheelLock = Date.now() + 260;
-      go(index + (dx > 0 ? 1 : -1));
-    }, { passive: false });
-
-    vp.addEventListener('keydown', function (e) {
-      var k = e.key;
-      if (k === 'ArrowRight') { e.preventDefault(); go(index + 1); }
-      else if (k === 'ArrowLeft') { e.preventDefault(); go(index - 1); }
-      else if (k === 'Home') { e.preventDefault(); go(0); }
-      else if (k === 'End') { e.preventDefault(); go(cards.length - 1); }
+  // mobile: the rail becomes a drop-down chapter list
+  if (menuBtn && rail) {
+    var setOpen = function (open, returnFocus) {
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      rail.classList.toggle('is-open', open);
+      if (open) {
+        rail.removeAttribute('data-surface');
+        var first = rail.querySelector('a');
+        if (first) first.focus();
+      } else if (returnFocus) {
+        menuBtn.focus();
+      }
+    };
+    menuBtn.addEventListener('click', function () {
+      setOpen(menuBtn.getAttribute('aria-expanded') !== 'true');
     });
-
-    // If focus lands inside a card by any route, bring that card forward.
-    vp.addEventListener('focusin', function (e) {
-      var card = e.target.closest ? e.target.closest('.lq-card') : null;
-      if (!card) return;
-      var i = cards.indexOf(card);
-      if (i > -1 && i !== index) go(i);
+    rail.addEventListener('click', function (e) {
+      if (e.target.closest('a') && rail.classList.contains('is-open')) setOpen(false);
     });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && rail.classList.contains('is-open')) setOpen(false, true);
+    });
+    document.addEventListener('click', function (e) {
+      if (rail.classList.contains('is-open') && !rail.contains(e.target) && !menuBtn.contains(e.target)) setOpen(false);
+    });
+    // a desktop-width resize must not leave a stranded panel
+    window.matchMedia('(min-width: 1180px)').addEventListener('change', function (m) { if (m.matches) setOpen(false); });
+  }
 
-    if (prevBtn) prevBtn.addEventListener('click', function () { go(index - 1); });
-    if (nextBtn) nextBtn.addEventListener('click', function () { go(index + 1); });
-
-    /* ── rail ──────────────────────────────────────────────────────── */
-
-    if (rail) {
-      cards.forEach(function (el, i) {
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.setAttribute('aria-label', el.getAttribute('aria-label') || 'Project ' + (i + 1));
-        b.addEventListener('click', function () { go(i); });
-        rail.appendChild(b);
-      });
-    }
-
-    /* ── boot ──────────────────────────────────────────────────────── */
-
-    measure();
-    pos = goal;
-    setIndex(0);
-    render();
-
-    var ro = window.ResizeObserver ? new ResizeObserver(measure) : null;
-    if (ro) ro.observe(vp); else window.addEventListener('resize', measure);
-
-    // Card widths are clamp()-based, but re-measuring once the display
-    // face has loaded costs nothing and avoids a half-pixel drift.
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-  }());
-
-  /* ═══ 2. SCROLL REVEALS ════════════════════════════════════════════ */
+  /* ═══ 2. REVEALS ═══════════════════════════════════════════════════ */
 
   (function reveals() {
-    var items = document.querySelectorAll('.nama-reveal, .step');
-    if (!items.length) return;
-
-    if (!('IntersectionObserver' in window) || reduce) {
+    var items = $$('.reveal, .plate, .next, .invite');
+    if (!('IntersectionObserver' in window)) {
       items.forEach(function (el) { el.classList.add('is-in'); });
       return;
     }
@@ -283,77 +129,128 @@
         en.target.classList.add('is-in');
         io.unobserve(en.target);
       });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.15 });
-
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
     items.forEach(function (el) { io.observe(el); });
+
+    // arriving on a deep link (#nabz, #about…) must not show an empty plate
+    if (location.hash) {
+      var target = document.getElementById(location.hash.slice(1));
+      var plate = target && target.closest ? target.closest('.plate') : null;
+      if (plate) plate.classList.add('is-in');
+    }
   }());
 
-  /* ═══ 3. WORD-BY-WORD STATEMENT ════════════════════════════════════ */
+  /* ═══ 3. FILTERS ═══════════════════════════════════════════════════ */
 
-  (function statement() {
-    var el = document.getElementById('statement');
-    if (!el) return;
+  (function filters() {
+    var buttons = $$('.filter');
+    var plates = $$('.plate');
+    var status = $('#filter-status');
+    var empty = $('#work-empty');
+    if (!buttons.length) return;
 
-    // Split text nodes into words in place, so the <em> survives.
-    (function split(node) {
-      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
-        if (child.nodeType === 3) {
-          var frag = document.createDocumentFragment();
-          child.nodeValue.split(/(\s+)/).forEach(function (part) {
-            if (!part) return;
-            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
-            var s = document.createElement('span');
-            s.className = 'w';
-            s.textContent = part;
-            frag.appendChild(s);
-          });
-          node.replaceChild(frag, child);
-        } else if (child.nodeType === 1) {
-          split(child);
-        }
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var f = btn.getAttribute('data-filter');
+        buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+        var shown = 0;
+        plates.forEach(function (p) {
+          var on = f === 'all' || (' ' + p.getAttribute('data-cats') + ' ').indexOf(' ' + f + ' ') > -1;
+          p.hidden = !on;
+          if (on) { shown++; p.classList.add('is-in'); }
+        });
+        if (empty) empty.hidden = shown > 0;
+        if (status) status.textContent = 'Showing ' + shown + ' of ' + plates.length + ' projects.';
+        request();
       });
-    }(el));
-
-    var words = Array.prototype.slice.call(el.querySelectorAll('.w'));
-    if (reduce) { words.forEach(function (w) { w.classList.add('is-on'); }); return; }
-
-    var lit = -1;
-    function paint() {
-      var r = el.getBoundingClientRect();
-      var from = window.innerHeight * 0.88;
-      var to = window.innerHeight * 0.3;
-      var p = clamp((from - r.top) / (from - to), 0, 1);
-      var n = Math.round(p * words.length);
-      if (n === lit) return;
-      for (var i = 0; i < words.length; i++) words[i].classList.toggle('is-on', i < n);
-      lit = n;
-    }
-    addEventListener('scroll', paint, { passive: true });
-    addEventListener('resize', paint);
-    paint();
+    });
   }());
 
-  /* ═══ 4. NAV STATE + SCROLL PROGRESS ═══════════════════════════════ */
+  /* ═══ 4. METHOD ════════════════════════════════════════════════════ */
 
-  (function nav() {
-    var bar = document.getElementById('nav');
-    var prog = document.getElementById('progress');
-    if (!bar && !prog) return;
+  (function method() {
+    var steps = $$('.step');
+    var panels = $$('.sp');
+    var nodes = $$('.cy-node');
+    var arc = $('#cy-arc');
+    var centre = $('#cy-centre');
+    if (!steps.length) return;
 
-    var queued = false;
-    function frame() {
-      queued = false;
-      var y = window.scrollY || 0;
-      if (bar) bar.classList.toggle('is-stuck', y > 24);
-      if (prog) {
-        var max = document.documentElement.scrollHeight - window.innerHeight;
-        prog.style.width = (max > 0 ? (y / max) * 100 : 0).toFixed(2) + '%';
+    function show(i) {
+      steps.forEach(function (s, n) { s.setAttribute('aria-pressed', n === i ? 'true' : 'false'); });
+      panels.forEach(function (p, n) { p.classList.toggle('is-on', n === i); });
+      nodes.forEach(function (g, n) {
+        g.classList.toggle('is-on', n === i);
+        g.classList.toggle('is-done', n < i);
+      });
+      if (arc) arc.style.strokeDasharray = Math.max(i, 0.02) + ' 6';
+      if (centre) centre.textContent = steps[i].textContent.replace(/^\s*\d+\s*/, '');
+    }
+
+    steps.forEach(function (s, i) {
+      s.addEventListener('click', function () { show(i); });
+      s.addEventListener('keydown', function (e) {
+        var k = e.key, n = null;
+        if (k === 'ArrowDown' || k === 'ArrowRight') n = (i + 1) % steps.length;
+        if (k === 'ArrowUp' || k === 'ArrowLeft') n = (i - 1 + steps.length) % steps.length;
+        if (n === null) return;
+        e.preventDefault();
+        steps[n].focus();
+        show(n);
+      });
+    });
+    // the diagram is a pointer shortcut; the buttons remain the accessible control
+    nodes.forEach(function (g, i) { g.addEventListener('click', function () { show(i); }); });
+    show(0);
+  }());
+
+  /* ═══ 5. PROCESS ═══════════════════════════════════════════════════ */
+
+  var proc = $('.process');
+  var procParts = [];
+  if (proc) {
+    $$('.pr-line, .pr-dot, .pr-step', proc).forEach(function (el) {
+      var x;
+      if (el.classList.contains('pr-step')) {
+        x = 20 + Number(el.getAttribute('data-step')) * 200 + 100;
+      } else {
+        try { var b = el.getBBox(); x = b.x + b.width / 2; } catch (e) { x = 0; }
       }
-    }
-    addEventListener('scroll', function () {
-      if (!queued) { queued = true; requestAnimationFrame(frame); }
-    }, { passive: true });
-    frame();
-  }());
+      procParts.push({ el: el, i: clamp(Math.floor((x - 20) / 200), 0, 5), dot: !el.classList.contains('pr-line') });
+    });
+  }
+  var lastP = -1;
+  function processFrame(vh) {
+    if (!proc || !motionOK.matches) return;
+    var r = proc.getBoundingClientRect();
+    if (r.bottom < -100 || r.top > vh + 100) return;
+    // 0 as the figure enters at the bottom, complete by the time it reaches the upper half
+    var p = clamp((vh - r.top) / (vh * 0.6), 0, 1);
+    if (Math.abs(p - lastP) < 0.003) return;
+    lastP = p;
+    procParts.forEach(function (o) {
+      var local = clamp(p * 6.6 - o.i, 0, 1);
+      if (o.dot) o.el.style.setProperty('--op', local > 0.55 ? '1' : '0');
+      else o.el.style.setProperty('--off', (1 - local).toFixed(3));
+    });
+  }
 
+  /* ═══ 6. PARALLAX ══════════════════════════════════════════════════ */
+
+  var layers = $$('.hero__art .a-strata, .hero__art .a-city, .hero__art .a-tree, .hero__art .a-net');
+  var depth = [0.06, 0.1, 0.14, 0.14];
+  var heroEl = $('#entering');
+  function parallaxFrame(y, vh) {
+    if (!layers.length || !motionOK.matches || y > vh * 1.2) return;
+    layers.forEach(function (l, i) { l.style.transform = 'translateY(' + (y * depth[i]).toFixed(1) + 'px)'; });
+  }
+  if (heroEl && layers.length) {
+    motionOK.addEventListener('change', function (m) {
+      if (!m.matches) layers.forEach(function (l) { l.style.transform = ''; });
+      request();
+    });
+  }
+
+  frame();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(request);
 }());
